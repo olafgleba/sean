@@ -37,15 +37,19 @@ gulp.task('lint', function() {
 // currently libsass only supports `nested` and `compressed`
 gulp.task('sass-devel', function() {
   return gulp.src('source/sass/**/*.scss')
-    //gulp.pipe(sourcemaps.init())
+    .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'nested' }))
-    .pipe(autoprefixer())
-    //.pipe(sourcemaps.write())
+    // Comment out autoprefixer because of https://github.com/sindresorhus/gulp-autoprefixer/issues/8
+    //.pipe(autoprefixer())
+    .pipe(sourcemaps.write())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('app/assets/css'))
-    //.pipe(filter('**/*.css')) // Filtering stream to only css files (comment out when using sourcemaps)
+    .pipe(filter('**/*.css')) // Filtering stream to only css files (comment out when using sourcemaps)
     .pipe(reload({stream:true}));
 });
+
+
+
 
 gulp.task('js-base-devel', function() {
   return gulp.src('source/libs/base.js')
