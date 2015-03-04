@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
+var sassdoc = require('sassdoc');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var autoprefixer = require('gulp-autoprefixer');
@@ -76,6 +77,12 @@ gulp.task('modernizr', function() {
 gulp.task('hologram', function() {
   gulp.src('styleguide/config.yml')
     .pipe(hologram());
+});
+
+
+gulp.task('sassdoc', function() {
+  return gulp.src('source/sass/**/*.scss')
+    .pipe(sassdoc());
 });
 
 
