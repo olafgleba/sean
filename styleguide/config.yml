@@ -5,7 +5,7 @@
 source: ../source/sass
 
 # The directory that hologram will build to
-destination: ../app/docs
+destination: ../app/styleguide
 
 # The assets needed to build the docs (includes header.html,
 # footer.html, etc)

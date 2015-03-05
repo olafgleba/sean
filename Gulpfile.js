@@ -4,6 +4,7 @@ var sass = require('gulp-sass');
 var sassdoc = require('sassdoc');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 var autoprefixer = require('gulp-autoprefixer');
 var modernizr = require('gulp-modernizr');
 var filter = require('gulp-filter');
@@ -69,6 +70,7 @@ gulp.task('js-plugins-devel', function() {
 gulp.task('modernizr', function() {
   gulp.src('source/**/*.{js,scss}')
     .pipe(modernizr('modernizr-custom.min.js'))
+    .pipe(uglify())
     .pipe(gulp.dest("app/assets/libs/vendor"))
 });
 
@@ -81,8 +83,13 @@ gulp.task('hologram', function() {
 
 
 gulp.task('sassdoc', function() {
+
+  var options = {
+    dest: 'app/sassdoc'
+  };
+
   return gulp.src('source/sass/**/*.scss')
-    .pipe(sassdoc());
+    .pipe(sassdoc(options));
 });
 
 
