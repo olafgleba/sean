@@ -85,7 +85,13 @@ gulp.task('hologram', function() {
 gulp.task('sassdoc', function() {
 
   var options = {
-    dest: 'app/sassdoc'
+    dest: 'app/sassdoc',
+    groups: {
+      undefined: "Not assigned",
+      color_design: "Design Colors",
+      color_element: "Element Colors",
+      mq_helper: "Media Query Helpers"
+    }
   };
 
   return gulp.src('source/sass/**/*.scss')
@@ -106,9 +112,10 @@ gulp.task('js-jquery', function() {
 // Development
 gulp.task('default', ['sass-devel', 'lint', 'js-jquery', 'modernizr', 'js-base-devel', 'js-plugins-devel', 'hologram', 'browser-sync'], function() {
 
-    gulp.watch('source/sass/**/*.scss', ['sass-devel', 'hologram']);
+    gulp.watch('source/sass/**/*.scss', ['sass-devel', 'hologram', 'sassdoc']);
+    //gulp.watch('source/sass/configuration.scss', ['sassdoc', browserSync.reload]);
     gulp.watch('source/libs/**/*.js', ['lint', 'js-base-devel', 'js-plugins-devel', browserSync.reload]);
-    gulp.watch("app/*.html").on("change", browserSync.reload);
+    gulp.watch("app/**/*.html").on("change", browserSync.reload);
     gulp.watch('styleguide/**/*.{html,yml}', ['hologram', browserSync.reload]);
 
 });

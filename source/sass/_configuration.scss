@@ -20,25 +20,44 @@
 
 
 /**
- * Project agnostic colors
+ * Project agnostic design colors
  */
 
-/// This is a group of color variables
-/// @group colors
+/// @group color_design
 $orange: #f60;
 
+/// @group color_design
+$blazeOrange: #f60;
 
+/// @group color_design
 $white: #fff;
+
+/// @group color_design
 $black: #000;
 
 
 
+
+
+
 /**
- * Project aware colors
+ * Project element colors
  */
+
+/// @group color_element
 $base-text-color: $black;
+
+/// @group color_element
 $base-link-color: $orange;
+
+/// @group color_element
 $base-link-hover-color: lighten($orange, 10%);
+
+
+
+
+
+
 
 $btn-color: $orange;
 $btn-bg-color: $white;

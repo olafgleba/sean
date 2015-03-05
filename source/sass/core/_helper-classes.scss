@@ -36,6 +36,16 @@
  * 		...
  * 		</div
  */
+
+/// Placeholder to shorten declarations matching a
+/// media query. Naming is related to the media-query hash
+/// within the `_configuration.scss` file.
+/// @group mq_helper
+/// @example
+/// 	.selector {
+/// 		@extend %is-visible-desk;
+/// 	}
+%is-visible-desk,
 .is-visible-desk {
 	display: none;
 

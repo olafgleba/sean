@@ -10,8 +10,10 @@
 @import "bootstrap";
 
 // project section styles
+@import "core/functions";
+@import "core/mixins";
 @import "core/vertical-rhythm";
-@import "core/classes";
+@import "core/helper-classes";
 
 // project section styles
 @import "project/layout";
