@@ -1,0 +1,247 @@
+/**
+ * Core list component
+ *
+ * Several raw list abstractions which solves daily "bread and butter"
+ * lists. Additionally these abstractions helps us to build meaningful
+ * components.
+ */
+
+$list-padding:   $base-spacing-unit !default;
+$list-font-size: $base-font-size !default;
+
+$list-padding--tiny:  quarter($list-padding) !default;
+$list-padding--small: halve($list-padding) !default;
+$list-padding--large: double($list-padding) !default;
+$list-padding--huge:  quadruple($list-padding) !default;
+
+
+// scss-lint:disable NameFormat
+
+/**
+ * List bare
+ *
+ * Simply removes the list-style and get rid of margin/paddings
+ * that might be present. The abstraction is used in nearly all other
+ * list abstractions per @extend as we probably never want list styles
+ * to appear within those components.
+ */
+
+.list-bare,
+%list-bare {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+/**
+ * List inline block
+ *
+ * Set a list in horizontal inline block mode.
+ *
+ * 1. Remove inter-cell whitespace that appears between
+ *    `inline-block` child elements.
+ * 2. Reset font size change made in `list-inline-block`.
+ */
+
+.list-inline-block {
+  @extend %list-bare;
+
+  font-size: 0; // [1]
+
+  > li {
+    @extend %list-inline-block__item;
+  }
+}
+
+/**
+ * Child of `.list-inline-block`
+ */
+
+.list-inline-block__item,
+%list-inline-block__item {
+  display: inline-block;
+  font-size: $list-font-size; // [2]
+}
+
+
+
+
+/**
+ * List stacked
+ *
+ * Set a list in vertical block mode.
+ */
+
+.list-stacked {
+  @extend %list-bare;
+
+  > li {
+    @extend %list-stacked__item;
+  }
+}
+
+/**
+ * Child of `.list-stacked`
+ */
+
+.list-stacked__item,
+%list-stacked__item {
+  display: block;
+}
+
+
+
+
+
+
+/**
+ * List table
+ *
+ * Set list in table mode. Spreads every list item to have equal widths.
+ *
+ * 1. Parse faster and get more predictable behaviour as all children
+ *    occupies equal width.
+ * 2. Spread parent element to available space.
+ */
+
+.list-table {
+  @extend %list-bare;
+
+  display: table;
+  table-layout: fixed; // [1]
+  width: 100%; // [2]
+
+  > li {
+    @extend %list-table__item;
+  }
+}
+
+/**
+ * Childs of `.list-table`
+ *
+ * 1. Automatic divide words with hyphenation.
+ * 2. Dedicated link takes all available space
+ */
+
+.list-table__item,
+%list-table__item {
+  display: table-cell;
+  text-align: center;
+  hyphens: auto; // [1]
+}
+
+.list-table__link {
+  display: block; // [2]
+}
+
+
+
+
+
+
+/**
+ * List chart
+ *
+ * Gives a 1:1 comparison layout of label > value structure. Takes all
+ * available space of parent. Intend to use for any table alike layouts
+ * like price includes etc. which are semantically no tables at all.
+ *
+ * Applicable to div, ul/ol and dl.
+ *
+ * 1. By default children take all the available space of parent.
+ */
+
+.list-chart {
+  @extend %list-bare;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between; // [1]
+}
+
+.list-chart__label {
+  width: 50%;
+}
+
+.list-chart__value {
+  white-space: nowrap;
+}
+
+
+/**
+ * Modifiers: Change flex container horizontal alignment
+ */
+
+.list-chart--start {
+  justify-content: flex-start;
+}
+
+.list-chart--end {
+  justify-content: flex-end;
+}
+
+.list-chart--center {
+  justify-content: center;
+}
+
+.list-chart--around {
+  justify-content: flex-start;
+}
+
+
+
+
+
+/**
+ * Modifiers: Align the content of list items
+ */
+
+.list--align-center {
+  > li {
+    text-align: center;
+  }
+}
+
+.list--align-right {
+  > li {
+    text-align: right;
+  }
+}
+
+
+
+
+
+/**
+ * Modifiers: Blow/shrink list items
+ */
+
+.list--tiny {
+  > li {
+    padding: $list-padding--tiny;
+  }
+}
+
+.list--small {
+  > li {
+    padding: $list-padding--small;
+  }
+}
+
+.list--large {
+  > li {
+    padding: $list-padding--large;
+  }
+}
+
+.list--huge {
+  > li {
+    padding: $list-padding--huge;
+  }
+}
+
+// scss-lint:enable NameFormat

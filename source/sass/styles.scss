@@ -4,16 +4,13 @@
  */
 
 // Project configuration
-@import "configuration";
+@import 'configuration';
 
-// Global bootstrap of inuit modules
-@import "bootstrap";
+// Global bootstrap core modules
+@import 'bootstrap';
 
-// project section styles
-@import "core/functions";
-@import "core/mixins";
-@import "core/vertical-rhythm";
-@import "core/helper-classes";
+// Include vendor styles
+@import 'vendor/owl.carousel';
 
 // project section styles
-@import "project/layout";
+@import 'project/layout';

@@ -1,0 +1,1885 @@
+@charset "UTF-8";
+/**
+ * The compiled sass output of this file becomes
+ * the main CSS stylesheet to adress in your HTML
+ */
+/**
+ * Project configuration
+ *
+ * Section: example
+ *
+ * COLORS      - Project agnostic colors and project aware colors
+ * INTERFACE   - Element variables
+ * CORE        - Define/override core values to fit project requirements
+ */
+/**
+ * $COLORS
+ *
+ * 1. Project agnostic colors
+ * 2. Project aware colors
+ */
+/**
+ * 1. Project agnostic colors
+ */
+/**
+ * 2. Project aware colors
+ */
+/**
+ * $INTERFACE
+ *
+ * Define element default values
+ */
+/**
+ * $CORE
+ *
+ * Override default variable values. This is the place where the project
+ * core settings are defined.
+ *
+ * Whenever a value is adjusted, remove the `!default` flag. Otherwise
+ * leave it as is.
+ */
+/**
+ * Components
+ */
+/**
+ * Import core files
+ *
+ * Import core files (order matters) first as the
+ * project related files are usally build on those core
+ * abstractions and components.
+ */
+/**
+ * Core SASS default settings
+ *
+ * Core variables used throughout several objects/plugins
+ */
+/**
+ * Default variables
+ */
+/**
+ * Framework variables
+ */
+/**
+ * Framework media queries breakpoints
+ *
+ * Hold our breakpoint aliases and conditions in a list. Invoked through
+ * `media-query()` mixin.
+ */
+/**
+ * Placeholders
+ */
+/**
+ * Core functions
+ *
+ * They are heavily used within core and project files.
+ */
+/**
+ * Math helpers. Returning rounded quarter, halve, double and
+ * quadruple integers.
+ *
+ * Usage example:
+ *  .foo {
+ *    padding: halve(10px);
+ *  }
+ *
+ * Output:
+ *  .foo {
+ *    padding: 5px;
+ *  }
+ */
+/**
+ * Core mixins
+ *
+ * They are heavily used within core and project files.
+ */
+/**
+ * Create a fully formed type style (sizing and vertical rhythm) by passing
+ * in a single value. This will generate a rem-based font-size with its pixel
+ * fallback, as well as a unitless line-height which will place the element
+ * on your baseline, e.g.:
+ *
+ * Usage example:
+ *  .foo {
+ *    @include font-size(12px);
+ *  }
+ *
+ * Output:
+ *  .foo {
+ *    font-size: 12px;
+ *    font-size: 0.75rem;
+ *    line-height: 2;
+ *  }
+ *
+ * If you do not want to generate a line-height automatically, you
+ * simply pass in your own as a second paramater:
+ *
+ * Usage example:
+ *  .foo {
+ *    @include font-size(12px, 1.5);
+ *  }
+ *
+ * This parameter can be any integer, ‘inherit’, or ‘normal’. If you don’t
+ * want a line-height at all, pass in a second paramater of ‘none’ or ‘false’:
+ *
+ * Usage example:
+ *  .foo {
+ *    @include font-size(12px, none);
+ *  }
+ *
+ */
+/**
+ * Generate media queries from the aliases and conditions defined in
+ * `_core.variables.scss`.
+ *
+ * Usage example:
+ *  .foo {
+ *    color: green;
+ *
+ *    @include media-query(palm) {
+ *      color: red;
+ *    }
+ *  }
+ *
+ */
+/**
+ * A mixin to spit out our width classes. Pass in the columns we
+ * want the widths to have, and an optional suffix for responsive widths.
+ *
+ * This mixin is not applicable directly. Instead the mixin extension in `_utils.sizes.scss` generates all width- and breakpoint classes.
+ */
+/**
+ * Fork of Nicolas Gallaghers normalize.css
+ */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"], input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/**
+ * Partial to reset several defaults, e.g. box model related
+ * values of arbitrary element to establish a vertical rhythm
+ * (s. `_core.rhythm.scss` also).
+ */
+/**
+ * To establish a vertical rhythm we reset the browser defaults.
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+figure,
+table, th, td, caption,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * These elements' values are usually the same as the base line-height.
+ * Add/remove elements if needed. Make sure you only add elements which
+ * margin-bottom values are unlikely to redefine later.
+ *
+ * This concept features the `single-direction` approach:
+ * Info: csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl,
+blockquote, p, address,
+hr,
+table,
+fieldset, figure,
+pre {
+  margin-bottom: 1.5rem;
+}
+
+/**
+ * Some extra placeholders for our laziness ;-)
+ * Extends vertical rhythm placeholder `%margin-bottom` (s. above)
+ *
+ * Example:
+ *
+ * .foo {
+ *    @extend %margin-bottom-quarter;
+ *  }
+ */
+/**
+ * Box Sizing
+ *
+ * Defines `border-box` (instead of `content-box`) state as default to let
+ * us deal with predictable paddings and behaviour.
+ */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/**
+ * High-, page-level styling.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 3. Ensure the page always fills at least the entire height of the viewport.
+ * 4. Prevent certain mobile browsers from automatically zooming fonts.
+ * 5. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing.
+ */
+html {
+  font-size: 1em;
+  /* [1] */
+  line-height: 1.5;
+  /* [1] */
+  background-color: #fff;
+  color: #000;
+  overflow-y: scroll;
+  /* [2] */
+  min-height: 100%;
+  /* [3] */
+  -webkit-text-size-adjust: 100%;
+  /* [4] */
+  -ms-text-size-adjust: 100%;
+  /* [4] */
+  -moz-osx-font-smoothing: grayscale;
+  /* [5] */
+  -webkit-font-smoothing: antialiased;
+  /* [5] */
+}
+
+/**
+ * Headings 1–6, with corresponding Greek-alphabet abstract classes for double-
+ * stranded heading hierarchy:
+ * csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
+ */
+h1,
+.alpha {
+  font-size: 36px;
+  font-size: 2.25rem;
+  line-height: 1.33333;
+}
+
+h2,
+.beta {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 1.6;
+}
+
+h3,
+.gamma {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+h4,
+.delta {
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+h5,
+.epsilon {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h6,
+.zeta {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+}
+
+/**
+ * Core grid component
+ *
+ * Heavily inspired by <https://github.com/suitcss/components-grid/>
+ *
+ * DO NOT apply dimension or offset utilities to the `grid` element. All cell
+ * widths and offsets should be applied to child grid cells only.
+ */
+/**
+ * Grid container
+ *
+ * All content must be contained within child `grid__cell` elements.
+ *
+ * 1. Account for browser defaults of elements that might be the root node of
+ *    the component.
+ * 2. Remove inter-cell whitespace that appears between `inline-block` child
+ *    elements.
+ * 3. Ensure consistent default alignment.
+ */
+.grid {
+  display: block;
+  /* 1 */
+  font-size: 0;
+  /* 2 */
+  margin: 0;
+  /* 1 */
+  padding: 0;
+  /* 1 */
+  text-align: left;
+  /* 3 */
+}
+
+/**
+ * Modifier: Center align all grid cells
+ */
+.grid--align-center {
+  text-align: center;
+}
+
+/**
+ * Modifier: Right align all grid cells
+ */
+.grid--align-right {
+  text-align: right;
+}
+
+/**
+ * Modifier: middle-align grid cells
+ */
+.grid--align-middle > .grid__cell {
+  vertical-align: middle;
+}
+
+/**
+ * Modifier: Bottom-align grid cells
+ */
+.grid--align-bottom > .grid__cell {
+  vertical-align: bottom;
+}
+
+/**
+ * Modifier: Gutters
+ *
+ * NOTE: this can trigger a horizontal scrollbar if the component is as wide as
+ * the viewport. Use padding on a container, or `overflow-x:hidden` to protect
+ * against it.
+ */
+.grid--gutter {
+  margin: 0 calc(-0.5 * 24px);
+}
+
+.grid--gutter > .grid__cell {
+  padding: 0 calc(0.5 * 24px);
+}
+
+/**
+ * Modifiers: Blow/shrink gutters
+ */
+.grid--gutter--tiny {
+  margin: 0 calc(-0.5 * 6px);
+}
+
+.grid--gutter--tiny > .grid__cell {
+  padding: 0 calc(0.5 * 6px);
+}
+
+.grid--gutter--small {
+  margin: 0 calc(-0.5 * 12px);
+}
+
+.grid--gutter--small > .grid__cell {
+  padding: 0 calc(0.5 * 12px);
+}
+
+.grid--gutter--large {
+  margin: 0 calc(-0.5 * 48px);
+}
+
+.grid--gutter--large > .grid__cell {
+  padding: 0 calc(0.5 * 48px);
+}
+
+.grid--gutter--huge {
+  margin: 0 calc(-0.5 * 96px);
+}
+
+.grid--gutter--huge > .grid__cell {
+  padding: 0 calc(0.5 * 96px);
+}
+
+/**
+ * Grid cell
+ *
+ * No explicit width by default. Rely on combining `grid__cell`
+ * with a dimension utility or a component class that extends 'grid',
+ * s. `_utils.sizes.scss`.
+ *
+ * 1. Fundamentals of the non-float grid layout.
+ * 2. Reset font size change made in `grid`.
+ * 3. Keeps content correctly aligned with the grid direction.
+ * 4. Controls vertical positioning of units.
+ * 5. Make cells full-width by default.
+ */
+.grid__cell {
+  box-sizing: border-box;
+  display: inline-block;
+  /* 1 */
+  font-size: 16px;
+  /* 2 */
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  /* 3 */
+  vertical-align: top;
+  /* 4 */
+  width: 100%;
+  /* 5 */
+}
+
+/**
+ * Modifier: Horizontally center one unit
+ * Set a specific unit to be horizontally centered. Doesn't affect
+ * any other units. Can still contain a child `grid` object.
+ */
+.grid__cell--center {
+  display: block;
+  margin: 0 auto;
+}
+
+/**
+ * Core button component
+ *
+ * Heavily inspired by <https://github.com/suitcss/components-button/>
+ */
+/**
+ * The button classes are best applied to links, buttons, and submit inputs.
+ * These components can be used in forms, as calls to action, or as part of the
+ * general UI of the site/app.
+ */
+/**
+ * 1. Corrects inability to style clickable `input` types in iOS.
+ * 2. Normalize `box-sizing` across all elements that this component could be
+ *    applied to.
+ * 3. Inherit text color from ancestor.
+ * 4. Inherit font styles from ancestor.
+ * 5. Normalize `line-height`. For `input`, it can't be changed from `normal` in Firefox 4+.
+ * 6. Prevent button text from being selectable.
+ * 7. Make sure `input` will wrap text across multiple lines.
+ */
+.button {
+  -webkit-appearance: none;
+  /* 1 */
+  background: #fff;
+  border-color: #f60;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  /* 2 */
+  color: #f60;
+  /* 3 */
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  /* 4 */
+  line-height: normal;
+  /* 5 */
+  margin: 0;
+  padding: 12px 24px;
+  border-radius: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* 6 */
+  white-space: normal;
+  /* 7 */
+}
+
+/**
+ * Remove excess padding and border in Firefox 4+
+ */
+.button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */
+.button:focus {
+  outline: 1px dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+/**
+ * UI states
+ */
+.button:hover,
+.button:focus,
+.button:active {
+  text-decoration: none;
+}
+
+.button:disabled,
+.button.is-disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/**
+ * Modifiers: Blow/shrink buttons
+ */
+.button--tiny {
+  padding: 3px 6px;
+}
+
+.button--small {
+  padding: 6px 12px;
+}
+
+.button--large {
+  padding: 24px 48px;
+}
+
+.button--huge {
+  padding: 48px 96px;
+}
+
+/**
+ * Modifier: Take away any rectangle borders
+ */
+.button--pill {
+  border-radius: 100px;
+}
+
+/**
+ * Modifier: Make the button fill the width of its parent
+ */
+.button--full {
+  width: 100%;
+}
+
+/**
+ * Core button group component
+ *
+ * Heavily inspired by <https://github.com/suitcss/components-grid/>
+ */
+/**
+ * Create a visual connection between UI actions that belong together.
+ * Must only contain `button-group__item` objects as children.
+ *
+ * Example HTML:
+ *
+ * <div class="button-group [button-group--horizontal] [button-group--collapse]">
+ *   <div class="button-group__item">
+ *     <a class="button" href="#">Dashboard</a>
+ *   </div>
+ *   <div class="button-group__item">
+ *     <a class="button" href="#">Account</a>
+ *   </div>
+ *   <div class="button-group__item">
+ *     <a class="button" href="#">Logout</a>
+ *   </div>
+ * </div>
+ */
+/**
+ * Button group
+ *
+ * 1. Ensure component is full-width if applied to elements that are
+ *    `inline-block` by default.
+ * 2. Collapse whitespace between child elements. Only necessary for the
+ *    `button-group--horizontal` modifier which lays items out as
+ *    `inline-block`, but included in the base component so that affects
+ *    on `font-size` are consistent.
+ * 3. Remove any default styles that might be present when `ol` or `ul` are the
+ *    root element.
+ */
+.button-group {
+  display: block;
+  /* 1 */
+  font-size: 0;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  list-style: none;
+  /* 3 */
+  padding: 0;
+  /* 3 */
+}
+
+/**
+ * Button group item
+ *
+ * 1. Make it full-width if applied to elements that are `inline-block` by
+ *    default.
+ * 2. Reset the font size of the buttons to the root font size.
+ */
+.button-group__item {
+  display: block;
+  /* 1 */
+  font-size: 16px;
+  /* 2 */
+}
+
+.button-group__item > .button {
+  display: block;
+  width: 100%;
+}
+
+/**
+ * Ensure that interactions with a button make it sit on top of other buttons
+ * in the group.
+ */
+.button-group__item > .button:hover,
+.button-group__item > .button:focus,
+.button-group__item > .button:active,
+.button-group__item > .button.is-pressed {
+  z-index: 1;
+}
+
+/**
+ * Modifier: Horizontal buttons
+ */
+.button-group--horizontal > .button-group__item {
+  display: inline-block;
+}
+
+/**
+ * Modifier: Get rid of overlaping borders, apply border-radius as needed
+ */
+.button-group--collapse:not(.button-group--horizontal) > .button-group__item {
+  margin-top: -1px;
+}
+
+.button-group--collapse.button-group--horizontal > .button-group__item {
+  margin-left: -1px;
+}
+
+.button-group--collapse.button-group--horizontal > .button-group__item > .button {
+  border-radius: 0;
+}
+
+.button-group--collapse.button-group--horizontal > .button-group__item:not(:first-child):not(:last-child) > .button {
+  border-radius: 0;
+}
+
+.button-group--collapse.button-group--horizontal > .button-group__item:first-child:not(:only-child) > .button {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.button-group--collapse.button-group--horizontal > .button-group__item:last-child:not(:only-child) > .button {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+/**
+ * Core list component
+ *
+ * Several raw list abstractions which solves daily "bread and butter"
+ * lists. Additionally these abstractions helps us to build meaningful
+ * components.
+ */
+/**
+ * List bare
+ *
+ * Simply removes the list-style and get rid of margin/paddings
+ * that might be present. The abstraction is used in nearly all other
+ * list abstractions per @extend as we probably never want list styles
+ * to appear within those components.
+ */
+.list-bare,
+.list-inline-block, .list-stacked, .list-table, .list-chart {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * List inline block
+ *
+ * Set a list in horizontal inline block mode.
+ *
+ * 1. Remove inter-cell whitespace that appears between
+ *    `inline-block` child elements.
+ * 2. Reset font size change made in `list-inline-block`.
+ */
+.list-inline-block {
+  font-size: 0;
+}
+
+/**
+ * Child of `.list-inline-block`
+ */
+.list-inline-block__item,
+.list-inline-block > li {
+  display: inline-block;
+  font-size: 16px;
+}
+
+/**
+ * List stacked
+ *
+ * Set a list in vertical block mode.
+ */
+/**
+ * Child of `.list-stacked`
+ */
+.list-stacked__item,
+.list-stacked > li {
+  display: block;
+}
+
+/**
+ * List table
+ *
+ * Set list in table mode. Spreads every list item to have equal widths.
+ *
+ * 1. Parse faster and get more predictable behaviour as all children
+ *    occupies equal width.
+ * 2. Spread parent element to available space.
+ */
+.list-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+/**
+ * Childs of `.list-table`
+ *
+ * 1. Automatic divide words with hyphenation.
+ * 2. Dedicated link takes all available space
+ */
+.list-table__item,
+.list-table > li {
+  display: table-cell;
+  text-align: center;
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
+.list-table__link {
+  display: block;
+}
+
+/**
+ * List chart
+ *
+ * Gives a 1:1 comparison layout of label > value structure. Takes all
+ * available space of parent. Intend to use for any table alike layouts
+ * like price includes etc. which are semantically no tables at all.
+ *
+ * Applicable to div, ul/ol and dl.
+ *
+ * 1. By default children take all the available space of parent.
+ */
+.list-chart {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.list-chart__label {
+  width: 50%;
+}
+
+.list-chart__value {
+  white-space: nowrap;
+}
+
+/**
+ * Modifiers: Change flex container horizontal alignment
+ */
+.list-chart--start {
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.list-chart--end {
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.list-chart--center {
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.list-chart--around {
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+/**
+ * Modifiers: Align the content of list items
+ */
+.list--align-center > li {
+  text-align: center;
+}
+
+.list--align-right > li {
+  text-align: right;
+}
+
+/**
+ * Modifiers: Blow/shrink list items
+ */
+.list--tiny > li {
+  padding: 6px;
+}
+
+.list--small > li {
+  padding: 12px;
+}
+
+.list--large > li {
+  padding: 48px;
+}
+
+.list--huge > li {
+  padding: 96px;
+}
+
+/**
+ * Vertical alignment utilities
+ * Depends on an appropriate `display` value.
+ */
+.u-align-baseline {
+  vertical-align: baseline !important;
+}
+
+.u-align-bottom {
+  vertical-align: bottom !important;
+}
+
+.u-align-middle {
+  vertical-align: middle !important;
+}
+
+.u-align-top {
+  vertical-align: top !important;
+}
+
+/**
+ * Display-type utilities
+ *
+ * Heavily inspired by <https://github.com/suitcss/utils/>
+ */
+.u-block {
+  display: block !important;
+}
+
+.u-hidden {
+  display: none !important;
+}
+
+/**
+ * Completely remove from the flow but leave available to screen readers.
+ */
+.u-hidden-visually {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+.u-inline {
+  display: inline !important;
+}
+
+/**
+ * 1. Fix for Firefox bug: an image styled `max-width:100%` within an
+ *    inline-block will display at its default size, and not limit its
+ *    width to 100% of an ancestral container.
+ */
+.u-inline-block {
+  display: inline-block !important;
+  max-width: 100%;
+  /* 1 */
+}
+
+.u-table {
+  display: table !important;
+}
+
+.u-table-cell {
+  display: table-cell !important;
+}
+
+.u-table-row {
+  display: table-row !important;
+}
+
+/**
+ * Text Utilities
+ *
+ * Heavily inspired by <https://github.com/suitcss/utils/>
+ */
+/**
+ * Word breaking
+ *
+ * Break strings when their length exceeds the width of their container.
+ */
+.u-text-break {
+  word-wrap: break-word !important;
+}
+
+/**
+ * Horizontal text alignment
+ */
+.u-text-center {
+  text-align: center !important;
+}
+
+.u-text-left {
+  text-align: left !important;
+}
+
+.u-text-right {
+  text-align: right !important;
+}
+
+/**
+ * Inherit the ancestor's text color.
+ */
+.u-text-inherit-color {
+  color: inherit !important;
+}
+
+/**
+ * Enables font kerning in all browsers.
+ * http://blog.typekit.com/2014/02/05/kerning-on-the-web/
+ *
+ * 1. Chrome (not Windows), Firefox, Safari 6+, iOS, Android
+ * 2. Chrome (not Windows), Firefox, IE 10+
+ * 3. Safari 7 and future browsers
+ */
+.u-text-kern {
+  text-rendering: optimizeLegibility;
+  /* 1 */
+  -webkit-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  /* 2 */
+  -webkit-font-kerning: normal;
+          font-kerning: normal;
+  /* 3 */
+}
+
+/**
+ * Prevent whitespace wrapping
+ */
+.u-text-nowrap {
+  white-space: nowrap !important;
+}
+
+/**
+ * Text truncation
+ *
+ * Prevent text from wrapping onto multiple lines, and truncate with an
+ * ellipsis.
+ *
+ * 1. Ensure that the node has a maximum width after which truncation can
+ *    occur.
+ * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
+ *    nodes.
+ */
+.u-text-truncate {
+  max-width: 100%;
+  /* 1 */
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+  /* 2 */
+}
+
+/**
+ * Static and responsive width classes
+ *
+ * This generates utility width classes for every breakpoint we've
+ * initially defined in `_core.variables.scss` through a extension of the
+ * @widths mixin. By default this will create wholes, halves, thirds,
+ * quarters and fifths. Override/extend this Map in `_configuration.scss`
+ * as needed.
+ */
+/**
+ * Define how many columns do we want.
+ */
+/**
+ * Iterate over given columns and create static width classes.
+ *
+ * Output:
+ *
+ * // $use-fraction: true;
+ * .u-1/2
+ *
+ * // $use-fraction: false;
+ * .u-1of2
+ */
+.u-1\/1 {
+  width: 100% !important;
+}
+
+.u-1\/2 {
+  width: 50% !important;
+}
+
+.u-1\/3 {
+  width: 33.33333% !important;
+}
+
+.u-2\/3 {
+  width: 66.66667% !important;
+}
+
+.u-1\/4 {
+  width: 25% !important;
+}
+
+.u-2\/4 {
+  width: 50% !important;
+}
+
+.u-3\/4 {
+  width: 75% !important;
+}
+
+.u-1\/5 {
+  width: 20% !important;
+}
+
+.u-2\/5 {
+  width: 40% !important;
+}
+
+.u-3\/5 {
+  width: 60% !important;
+}
+
+.u-4\/5 {
+  width: 80% !important;
+}
+
+/**
+ * Iterate over given columns and breakpoints and create
+ * responsive width classes.
+ *
+ * Output:
+ *
+ * // $use-fraction: true;
+ * .u-1/2-palm
+ *
+ * // $use-fraction: false;
+ * .u-1of2-palm
+ */
+@media screen and (max-width: 44.9375em) {
+  .u-1\/1-palm {
+    width: 100% !important;
+  }
+  .u-1\/2-palm {
+    width: 50% !important;
+  }
+  .u-1\/3-palm {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-palm {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-palm {
+    width: 25% !important;
+  }
+  .u-2\/4-palm {
+    width: 50% !important;
+  }
+  .u-3\/4-palm {
+    width: 75% !important;
+  }
+  .u-1\/5-palm {
+    width: 20% !important;
+  }
+  .u-2\/5-palm {
+    width: 40% !important;
+  }
+  .u-3\/5-palm {
+    width: 60% !important;
+  }
+  .u-4\/5-palm {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 45em) and (max-width: 63.9375em) {
+  .u-1\/1-lap {
+    width: 100% !important;
+  }
+  .u-1\/2-lap {
+    width: 50% !important;
+  }
+  .u-1\/3-lap {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-lap {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-lap {
+    width: 25% !important;
+  }
+  .u-2\/4-lap {
+    width: 50% !important;
+  }
+  .u-3\/4-lap {
+    width: 75% !important;
+  }
+  .u-1\/5-lap {
+    width: 20% !important;
+  }
+  .u-2\/5-lap {
+    width: 40% !important;
+  }
+  .u-3\/5-lap {
+    width: 60% !important;
+  }
+  .u-4\/5-lap {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 63.9375em) {
+  .u-1\/1-lap-and-down {
+    width: 100% !important;
+  }
+  .u-1\/2-lap-and-down {
+    width: 50% !important;
+  }
+  .u-1\/3-lap-and-down {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-lap-and-down {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-lap-and-down {
+    width: 25% !important;
+  }
+  .u-2\/4-lap-and-down {
+    width: 50% !important;
+  }
+  .u-3\/4-lap-and-down {
+    width: 75% !important;
+  }
+  .u-1\/5-lap-and-down {
+    width: 20% !important;
+  }
+  .u-2\/5-lap-and-down {
+    width: 40% !important;
+  }
+  .u-3\/5-lap-and-down {
+    width: 60% !important;
+  }
+  .u-4\/5-lap-and-down {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  .u-1\/1-lap-and-up {
+    width: 100% !important;
+  }
+  .u-1\/2-lap-and-up {
+    width: 50% !important;
+  }
+  .u-1\/3-lap-and-up {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-lap-and-up {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-lap-and-up {
+    width: 25% !important;
+  }
+  .u-2\/4-lap-and-up {
+    width: 50% !important;
+  }
+  .u-3\/4-lap-and-up {
+    width: 75% !important;
+  }
+  .u-1\/5-lap-and-up {
+    width: 20% !important;
+  }
+  .u-2\/5-lap-and-up {
+    width: 40% !important;
+  }
+  .u-3\/5-lap-and-up {
+    width: 60% !important;
+  }
+  .u-4\/5-lap-and-up {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .u-1\/1-desk {
+    width: 100% !important;
+  }
+  .u-1\/2-desk {
+    width: 50% !important;
+  }
+  .u-1\/3-desk {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-desk {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-desk {
+    width: 25% !important;
+  }
+  .u-2\/4-desk {
+    width: 50% !important;
+  }
+  .u-3\/4-desk {
+    width: 75% !important;
+  }
+  .u-1\/5-desk {
+    width: 20% !important;
+  }
+  .u-2\/5-desk {
+    width: 40% !important;
+  }
+  .u-3\/5-desk {
+    width: 60% !important;
+  }
+  .u-4\/5-desk {
+    width: 80% !important;
+  }
+}
+
+@media screen and (min-width: 75em) {
+  .u-1\/1-desk-wide {
+    width: 100% !important;
+  }
+  .u-1\/2-desk-wide {
+    width: 50% !important;
+  }
+  .u-1\/3-desk-wide {
+    width: 33.33333% !important;
+  }
+  .u-2\/3-desk-wide {
+    width: 66.66667% !important;
+  }
+  .u-1\/4-desk-wide {
+    width: 25% !important;
+  }
+  .u-2\/4-desk-wide {
+    width: 50% !important;
+  }
+  .u-3\/4-desk-wide {
+    width: 75% !important;
+  }
+  .u-1\/5-desk-wide {
+    width: 20% !important;
+  }
+  .u-2\/5-desk-wide {
+    width: 40% !important;
+  }
+  .u-3\/5-desk-wide {
+    width: 60% !important;
+  }
+  .u-4\/5-desk-wide {
+    width: 80% !important;
+  }
+}
+
+/**
+ * vendor.scss
+ */
+/*
+ * Core Owl Carousel CSS File
+ * v1.3.2
+ */
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+/* display none until init */
+.owl-carousel {
+  display: none;
+  position: relative;
+  width: 100%;
+  -ms-touch-action: pan-y;
+}
+
+.owl-carousel .owl-wrapper {
+  display: none;
+  position: relative;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+
+.owl-carousel .owl-wrapper-outer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.owl-carousel .owl-wrapper-outer.autoHeight {
+  transition: height 500ms ease-in-out;
+}
+
+.owl-carousel .owl-item {
+  float: left;
+}
+
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div {
+  cursor: pointer;
+}
+
+.owl-controls {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* mouse grab icon */
+.grabbing {
+  cursor: url(grabbing.png) 8 8, move;
+}
+
+/* fix */
+.owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+}
+
+/**
+ * Demo
+ */
+.owl-carousel .item {
+  background: #42bdc2;
+  padding: 30px 0;
+  margin: 5px;
+  color: #FFF;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.owl-carousel-single .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/**
+ * layout.scss
+ */
+.page {
+  margin: 0 auto;
+  max-width: 64em;
+  padding: 24px;
+}
+
+/**
+ * SVG icon sprite
+ */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  transition: all 0.25s;
+  fill: #000;
+}
+
+a:hover .icon {
+  fill: #666666;
+}
+
+/**
+ * Enable automativ calculation of `srcset` and `sizes`
+ */
+img[data-sizes="auto"] {
+  display: block;
+  max-width: none;
+  width: 100%;
+  height: auto;
+}
+
+/**
+ * Enable transitions for layzy loaded images
+ *
+ */
+.lazyload,
+.lazyloading {
+  opacity: 0 !important;
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 0.5s ease-in !important;
+}
+
+.grid__cell > div {
+  background-color: #f60;
+  margin-bottom: 1em;
+}
+
+.grid__cell {
+  margin-bottom: 1em;
+}
+
+/**
+ * list of headings
+ * @string {String}
+ */
+/**
+ * Processwire related
+ */
+.align_right {
+  float: left;
+  margin-right: 24px;
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 64em) {
+  .align_right {
+    float: right;
+    margin-left: 48px;
+    margin-bottom: 24px;
+  }
+}
+
+/*header*/
+/*header*/
+/*footer*/
+/*footer*/
+/*main*/
+/*aside*/
+/*hx*/
+/*div*/
+
+/*# sourceMappingURL=styles.min.css.map */
