@@ -39,7 +39,7 @@
  * leave it as is.
  */
 /**
- * Components
+ * Abstractions
  */
 /**
  * Import core files
@@ -91,6 +91,8 @@
  * Core mixins
  *
  * They are heavily used within core and project files.
+ *
+ * Heavily based on <https://github.com/inuitcss>
  */
 /**
  * Create a fully formed type style (sizing and vertical rhythm) by passing
@@ -145,7 +147,8 @@
  * A mixin to spit out our width classes. Pass in the columns we
  * want the widths to have, and an optional suffix for responsive widths.
  *
- * This mixin is not applicable directly. Instead the mixin extension in `_utils.sizes.scss` generates all width- and breakpoint classes.
+ * This mixin is not applicable directly. Instead the mixin extension in
+ * `_utils.sizes.scss` generates all width- and breakpoint classes.
  */
 /**
  * Fork of Nicolas Gallaghers normalize.css
