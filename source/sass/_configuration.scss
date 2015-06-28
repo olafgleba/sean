@@ -3,9 +3,10 @@
  *
  * Section: example
  *
- * COLORS      - Project agnostic colors and project aware colors
- * INTERFACE   - Element variables
- * CORE        - Define/override core values to fit project requirements
+ * COLORS       - Project colors and element colors
+ * INTERFACE    - Element variables
+ * CORE         - Define/override core values to fit project requirements
+ * ABSTRACTIONS - Defaults values for abstractions
  */
 
 
@@ -13,12 +14,12 @@
 /**
  * $COLORS
  *
- * 1. Project agnostic colors
- * 2. Project aware colors
+ * 1. Project colors
+ * 2. Element colors
  */
 
 /**
- * 1. Project agnostic colors
+ * 1. Project colors
  */
 $white:  #fff;
 $black:  #000;
@@ -26,7 +27,7 @@ $orange: #f60;
 
 
 /**
- * 2. Project aware colors
+ * 2. Element colors
  */
 
 $base-link-color:       $orange;
@@ -62,7 +63,7 @@ $btn-color-hover:       lighten($orange, 10%);
  * core settings are defined.
  *
  * Whenever a value is adjusted, remove the `!default` flag. Otherwise
- * leave it as is.
+ * leave it as is to pass by the defaults.
  */
 
 // See `_core.variables.scss`
@@ -79,8 +80,8 @@ $base-background-color: $white;
 // the above section.
 
 $base-spacing-unit:        $base-line-height;
-$base-spacing-unit--tiny:  round($base-spacing-unit / 4);
-$base-spacing-unit--small: round($base-spacing-unit / 2);
+$base-spacing-unit--tiny:  round($base-spacing-unit * 0.25);
+$base-spacing-unit--small: round($base-spacing-unit * 0.5);
 $base-spacing-unit--large: round($base-spacing-unit * 2);
 $base-spacing-unit--huge:  round($base-spacing-unit * 4);
 
@@ -131,9 +132,17 @@ $widths-columns: (
 
 
 
+
+
 /**
- * Abstractions
+ * $ABSTRACTIONS
+ *
+ * Override default variable values.
+ *
+ * Whenever a value is adjusted, remove the `!default` flag. Otherwise
+ * leave it as is to pass by the defaults.
  */
+
 
 // Grid
 $grid-font-size:          $base-font-size !default;

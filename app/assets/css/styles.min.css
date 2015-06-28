@@ -8,21 +8,21 @@
  *
  * Section: example
  *
- * COLORS      - Project agnostic colors and project aware colors
+ * COLORS      - Project colors and element colors
  * INTERFACE   - Element variables
  * CORE        - Define/override core values to fit project requirements
  */
 /**
  * $COLORS
  *
- * 1. Project agnostic colors
- * 2. Project aware colors
+ * 1. Project colors
+ * 2. Element colors
  */
 /**
- * 1. Project agnostic colors
+ * 1. Project colors
  */
 /**
- * 2. Project aware colors
+ * 2. Element colors
  */
 /**
  * $INTERFACE
@@ -36,7 +36,7 @@
  * core settings are defined.
  *
  * Whenever a value is adjusted, remove the `!default` flag. Otherwise
- * leave it as is.
+ * leave it as is to pass by the defaults.
  */
 /**
  * Abstractions
@@ -149,6 +149,9 @@
  *
  * This mixin is not applicable directly. Instead the mixin extension in
  * `_utils.sizes.scss` generates all width- and breakpoint classes.
+ */
+/**
+ * ...
  */
 /**
  * Fork of Nicolas Gallaghers normalize.css

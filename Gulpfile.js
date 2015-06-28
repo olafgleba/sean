@@ -59,7 +59,7 @@ if(plugins.util.env.production === true) {
 
 
 /**
- * Paths
+ * Base vars and paths
  */
 
 var app = 'app/';
@@ -93,7 +93,7 @@ var paths = {
 gulp.task('browser-sync', function() {
     bs.init({
         server: {
-            baseDir: app
+            baseDir: app // [1]
         }
     });
 });
@@ -102,7 +102,7 @@ gulp.task('browser-sync', function() {
 
 
 /**
- * Clean assets folder
+ * Clean app assets folder
  */
 
 gulp.task('clean:assets', function(ca) {
@@ -214,20 +214,21 @@ gulp.task('process:icons', function() {
 
 
 /**
- * Spawn over all `scss` and `js` files and build a custom modernizr
- * build. Shove it to source vendor folder, so it can be concatenated
- * in `plugins.min.js` afterwards, e.g. we don't want to reference
- * it as a seperate file. So this task has to run before any compilation
- * or concatenation, e.g. outside the runSquenze.
+ * Spawn over all `scss` and `js` files for relevant attributes
+ * and build a custom modernizr build. Shove it to source vendor
+ * folder, so it can be concatenated in `plugins.min.js` afterwards,
+ * e.g. we don't want to reference it as a seperate file. So this
+ * task has to run before any compilation or concatenation, e.g.
+ * outside the runSequenze task array.
  *
- * 1. Set classes on html tag
+ * 1. Set classes on html tag related to found attributes
  */
 
 gulp.task('process:modernizr', function() {
   return gulp.src(paths.src + '**/*.{js,scss}')
     .pipe(plugins.modernizr('modernizr-custom.js', {
         "options": [
-          "setClasses"
+          "setClasses" // [1]
         ]
     }))
     .pipe(gulp.dest(paths.src.libs + 'vendor'))
