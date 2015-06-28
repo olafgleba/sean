@@ -3,30 +3,12 @@
  */
 
 var gulp = require('gulp');
-// var sourcemaps = require('gulp-sourcemaps');
-// var sass = require('gulp-sass');
-// var rename = require('gulp-rename');
-// var concat = require('gulp-concat');
-// var filter = require('gulp-filter');
-// var gutil = require('gulp-util');
-// var order = require('gulp-order');
-// var eslint = require('gulp-eslint');
-// var uglify = require('gulp-uglify');
-// var scsslint = require('gulp-scss-lint');
-// var svgstore = require('gulp-svgstore');
-// var csso = require('gulp-csso');
-// var postcss = require('gulp-postcss');
-// var modernizr = require('gulp-modernizr');
-// var imagemin = require('gulp-imagemin');
-// var order = require('gulp-order');
-
 var plugins = require('gulp-load-plugins')();
 
 /**
- * Load plugins manually
- *
- * Non `gulp-*` prefixed plugins
+ * Load non `gulp-*` prefixed plugins
  */
+
 var autoprefixer = require('autoprefixer-core');
 var bs = require('browser-sync').create();
 var opn = require('opn');
@@ -93,7 +75,7 @@ var paths = {
 gulp.task('browser-sync', function() {
     bs.init({
         server: {
-            baseDir: app // [1]
+            baseDir: app /* 1 */
         }
     });
 });
@@ -152,12 +134,12 @@ gulp.task('lint:scss', function() {
 
 gulp.task('compile:sass', function() {
   return gulp.src(paths.src.sass + '**/*.scss')
-    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.init()) // [1]
+    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
     .pipe(plugins.sass({outputStyle: 'expanded' }))
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
-    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.write('./')) // [1]
-    .pipe(isDeployment ? plugins.csso() : plugins.util.noop()) // [1]
+    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.write('./')) /* 1 */
+    .pipe(isDeployment ? plugins.csso() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.css))
     .pipe(isDeployment ? plugins.util.noop() : bs.stream({match: '**/*.css'}));
 });
@@ -228,7 +210,7 @@ gulp.task('process:modernizr', function() {
   return gulp.src(paths.src + '**/*.{js,scss}')
     .pipe(plugins.modernizr('modernizr-custom.js', {
         "options": [
-          "setClasses" // [1]
+          "setClasses" /* 1 */
         ]
     }))
     .pipe(gulp.dest(paths.src.libs + 'vendor'))
@@ -248,7 +230,7 @@ gulp.task('process:modernizr', function() {
 gulp.task('process:base', function() {
   return gulp.src(paths.src.libs + 'base.js')
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) // [1]
+    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.libs));
 });
 
@@ -275,14 +257,14 @@ gulp.task('concat:plugins', function() {
     ,
     gulp.src(paths.src.libs + 'vendor/*.js')
     )
-    .pipe(plugins.order([ // [1]
+    .pipe(plugins.order([ /* 1 */
       '**/modernizr-custom.js',
       '**/fastclick.js',
       '*'
     ]))
     .pipe(plugins.concat('plugins.js'))
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) // [2]
+    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 2 */
     .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
 
