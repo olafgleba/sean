@@ -50,9 +50,6 @@ body { }
 
 
 
-
-
-
 /**
  * Enable automativ calculation of `srcset` and `sizes`
  */
@@ -63,8 +60,6 @@ img[data-sizes="auto"] {
   width: 100%;
   height: auto;
 }
-
-
 
 /**
  * Enable transitions for layzy loaded images
@@ -87,12 +82,12 @@ img[data-sizes="auto"] {
 
 
 // just testing, remove if ready
-.grid__cell > div {
+.framework .grid__cell > div {
   background-color: $orange;
   margin-bottom: 1em;
 }
 
-.grid__cell {
+.framework .grid__cell {
   margin-bottom: 1em;
 }
 
@@ -221,4 +216,3 @@ img[data-sizes="auto"] {
 //   line-height: 1;
 //   margin-bottom: 0;
 // }
-

@@ -66,7 +66,7 @@ var paths = {
 
 
 /**
- * Connect to localhost to serve php files
+ * Connect to localhost to serve html files
  * and start syncing
  *
  * 1. Adapt path to fit the environment
