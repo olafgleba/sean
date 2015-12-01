@@ -1,5 +1,5 @@
 /**
- * Core list component
+ * Core list abstraction
  *
  * Several raw list abstractions which solves daily "bread and butter"
  * lists. Additionally these abstractions helps us to build meaningful
@@ -47,7 +47,8 @@ $list-padding--huge:  quadruple($list-padding) !default;
  * 2. Reset font size change made in `list-inline-block`.
  */
 
-.list-inline-block {
+.list-inline-block,
+%list-inline-block {
   @extend %list-bare;
 
   font-size: 0; /* 1 */
@@ -76,7 +77,8 @@ $list-padding--huge:  quadruple($list-padding) !default;
  * Set a list in vertical block mode.
  */
 
-.list-stacked {
+.list-stacked,
+%list-stacked {
   @extend %list-bare;
 
   > li {
@@ -85,12 +87,18 @@ $list-padding--huge:  quadruple($list-padding) !default;
 }
 
 /**
- * Child of `.list-stacked`
+ * Children of `.list-stacked`
+ *
+ * 1. Dedicated link takes all available space
  */
 
 .list-stacked__item,
 %list-stacked__item {
   display: block;
+}
+
+.list-stacked__block-link {
+  display: block; /* 1 */
 }
 
 
@@ -108,12 +116,14 @@ $list-padding--huge:  quadruple($list-padding) !default;
  * 2. Spread parent element to available space.
  */
 
-.list-table {
+.list-table,
+%list-table {
   @extend %list-bare;
 
   display: table;
   table-layout: fixed; /* 1 */
   width: 100%; /* 2 */
+  text-align: center;
 
   > li {
     @extend %list-table__item;
@@ -121,7 +131,7 @@ $list-padding--huge:  quadruple($list-padding) !default;
 }
 
 /**
- * Childs of `.list-table`
+ * Children of `.list-table`
  *
  * 1. Automatic divide words with hyphenation.
  * 2. Dedicated link takes all available space
@@ -134,7 +144,7 @@ $list-padding--huge:  quadruple($list-padding) !default;
   hyphens: auto; /* 1 */
 }
 
-.list-table__link {
+.list-table__block-link {
   display: block; /* 2 */
 }
 
@@ -155,7 +165,8 @@ $list-padding--huge:  quadruple($list-padding) !default;
  * 1. By default children take all the available space of parent.
  */
 
-.list-chart {
+.list-chart,
+%list-chart {
   @extend %list-bare;
 
   display: flex;
@@ -189,7 +200,7 @@ $list-padding--huge:  quadruple($list-padding) !default;
 }
 
 .list-chart--around {
-  justify-content: flex-start;
+  justify-content: space-around;
 }
 
 
@@ -198,15 +209,24 @@ $list-padding--huge:  quadruple($list-padding) !default;
 
 /**
  * Modifiers: Align the content of list items
+ *
+ * Example:
+ *   <ul class="list-table list--[align-left]"></ul>
  */
 
-.list--align-center {
+.list--text-left {
+  > li {
+    text-align: left;
+  }
+}
+
+.list--text-center {
   > li {
     text-align: center;
   }
 }
 
-.list--align-right {
+.list--text-right {
   > li {
     text-align: right;
   }
@@ -218,29 +238,85 @@ $list-padding--huge:  quadruple($list-padding) !default;
 
 /**
  * Modifiers: Blow/shrink list items
+ *
+ * Generic size utilities. Is applicable on every list abstraction except
+ * where flex box is involved.
+ *
+ * 1. Expand list item paddings
+ * 2. Ommit left/right padding of first/last item
+ *
+ * Example:
+ *   <ul class="list-table list--[tiny]"></ul>
+ *   <ul class="list-stacked list--[tiny] list--skip-vertical"></ul>
+ *   <ul class="list-inline-block list--[tiny]-vertical list--skip-vertical"></ul>
  */
 
 .list--tiny {
   > li {
-    padding: $list-padding--tiny;
+    padding: $list-padding--tiny; /* 1 */
   }
 }
 
 .list--small {
   > li {
-    padding: $list-padding--small;
+    padding: $list-padding--small; /* 1 */
   }
 }
 
 .list--large {
   > li {
-    padding: $list-padding--large;
+    padding: $list-padding--large; /* 1 */
   }
 }
 
 .list--huge {
   > li {
-    padding: $list-padding--huge;
+    padding: $list-padding--huge; /* 1 */
+  }
+}
+
+
+
+.list--tiny-vertical {
+  > li {
+    padding-left:  $list-padding--tiny; /* 1 */
+    padding-right: $list-padding--tiny; /* 1 */
+  }
+}
+
+.list--small-vertical {
+  > li {
+    padding-left:  $list-padding--small; /* 1 */
+    padding-right: $list-padding--small; /* 1 */
+  }
+}
+
+.list--large-vertical {
+  > li {
+    padding-left:  $list-padding--large; /* 1 */
+    padding-right: $list-padding--large; /* 1 */
+  }
+}
+
+.list--huge-vertical {
+  > li {
+    padding-left:  $list-padding--huge; /* 1 */
+    padding-right: $list-padding--huge; /* 1 */
+  }
+}
+
+
+
+
+.list--skip-vertical { /* 2 */
+  > li {
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
   }
 }
 

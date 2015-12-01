@@ -3,7 +3,7 @@
  *
  * Section: example
  *
- * COLORS       - Project colors and element colors
+ * COLORS       - Project agnostic colors and project aware colors
  * INTERFACE    - Element variables
  * CORE         - Define/override core values to fit project requirements
  * ABSTRACTIONS - Defaults values for abstractions
@@ -14,30 +14,27 @@
 /**
  * $COLORS
  *
- * 1. Project colors
- * 2. Element colors
+ * 1. Project agnostic colors
+ * 2. Project aware colors
  */
 
 /**
- * 1. Project colors
+ * 1. Project agnostic colors
  */
 $white:  #fff;
 $black:  #000;
+$gray:   #ccc;
 $orange: #f60;
 
 
 /**
- * 2. Element colors
+ * 2. Project aware colors
  */
 
 $base-link-color:       $orange;
 $base-link-hover-color: lighten($orange, 10%);
 
-$btn-color:             $orange;
-$btn-bg-color:          $white;
-$btn-color-hover:       lighten($orange, 10%);
-
-
+$base-border-color: $gray;
 
 
 
@@ -48,9 +45,21 @@ $btn-color-hover:       lighten($orange, 10%);
  * Define element default values
  */
 
-// ...
+// Buttons
+$btn-color:             $orange;
+$btn-bg-color:          $white;
+$btn-border-color:      $orange;
+$btn-color-hover:       lighten($orange, 10%);
 
+// Loading progress animation
+$progress-border-color:     $white;
+$progress-border-top-color: $orange;
 
+// Icons
+$icon-fill-color: $black;
+
+// Framework
+$framework-accent-color: $orange;
 
 
 
@@ -63,7 +72,7 @@ $btn-color-hover:       lighten($orange, 10%);
  * core settings are defined.
  *
  * Whenever a value is adjusted, remove the `!default` flag. Otherwise
- * leave it as is to pass by the defaults.
+ * leave it as is.
  */
 
 // See `_core.variables.scss`
@@ -80,8 +89,8 @@ $base-background-color: $white;
 // the above section.
 
 $base-spacing-unit:        $base-line-height;
-$base-spacing-unit--tiny:  round($base-spacing-unit * 0.25);
-$base-spacing-unit--small: round($base-spacing-unit * 0.5);
+$base-spacing-unit--tiny:  round($base-spacing-unit / 4);
+$base-spacing-unit--small: round($base-spacing-unit / 2);
 $base-spacing-unit--large: round($base-spacing-unit * 2);
 $base-spacing-unit--huge:  round($base-spacing-unit * 4);
 
@@ -91,7 +100,7 @@ $base-spacing-unit--huge:  round($base-spacing-unit * 4);
 // See `_core.defaults.scss`
 
 $heading-size-1: 36px !default;
-$heading-size-2: 30px !default;
+$heading-size-2: 28px !default;
 $heading-size-3: 24px !default;
 $heading-size-4: 20px !default;
 $heading-size-5: 16px !default;
@@ -122,13 +131,12 @@ $use-fractions: true;
 
 // See `_utils.sizes.scss`
 $widths-columns: (
-    1,
-    2,
-    3,
-    4,
-    5
+  1,
+  2,
+  3,
+  4,
+  5
 );
-
 
 
 
@@ -143,19 +151,23 @@ $widths-columns: (
  * leave it as is to pass by the defaults.
  */
 
-
 // Grid
 $grid-font-size:          $base-font-size !default;
 $grid-gutter-size:        $base-spacing-unit !default;
 
 
 
+// Flexgrid
+$flexgrid-gutter-size: $base-spacing-unit !default;
+
+
+
 // Button
 $button-font:             inherit !default;
-$button-font-size:        $base-font-size !default;
-$button-border-width:     1px;
+$button-border-width:     1px !default;
 $button-border-style:     solid !default;
 $button-border-radius:    0 !default;
+$button-border-color:     $btn-border-color;
 $button-color:            $btn-color;
 $button-bg-color:         $btn-bg-color;
 $button-disabled-opacity: 0.5 !default;
@@ -172,3 +184,12 @@ $button-group-border-radius: 0 !default;
 // List
 $list-padding:   $base-spacing-unit !default;
 $list-font-size: $base-font-size !default;
+
+
+
+// Table
+$table-padding:      $base-spacing-unit !default;
+$table-border-width: 1px !default;
+$table-border-width: $base-font-size !default;
+$table-border-style: solid !default;
+$table-border-color: $base-border-color !default;

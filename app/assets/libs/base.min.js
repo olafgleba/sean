@@ -58,7 +58,20 @@ $(function() {
 
   // Init smooth scrolling
   $('a').smoothScroll({
-      speed: 500
+    speed: 500
+  });
+
+
+  // Init fluidbox
+  $('a[rel="fluidbox"]').fluidbox({
+    immediateOpen: true
+  })
+  .one('openstart', function() {
+    $(this).find('.fluidbox-ghost')
+    .append('<div class="is-loading-fluidbox"><div class="progress progress--large"></div></div>');
+  })
+  .on('imageloaddone', function() {
+    $(this).find('.is-loading-fluidbox').remove();
   });
 
 
@@ -83,7 +96,8 @@ $(function() {
     navigation: true, // Show next and prev buttons
     slideSpeed: 300,
     paginationSpeed: 400,
-    singleItem: true
+    singleItem: true,
+    autoHeight: true
   });
 
 

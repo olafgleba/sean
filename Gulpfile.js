@@ -9,7 +9,9 @@ var plugins = require('gulp-load-plugins')();
  * Load non `gulp-*` prefixed plugins
  */
 
-var autoprefixer = require('autoprefixer-core');
+// Uncomment for debugging
+//require('time-require');
+
 var bs = require('browser-sync').create();
 var opn = require('opn');
 var mainBowerFiles = require('main-bower-files');
@@ -44,21 +46,22 @@ if(plugins.util.env.production === true) {
  * Base vars and paths
  */
 
-var app = 'app/';
-var src = 'source/';
+var app    = 'app/';
+var source = 'source/';
 
 var paths = {
   app: {
     assets: app + 'assets/',
-    css: app + 'assets/css/',
-    libs: app + 'assets/libs/',
-    img: app + 'assets/img/',
-    html: app
+    css:    app + 'assets/css/',
+    libs:   app + 'assets/libs/',
+    img:    app + 'assets/img/',
+    html:   app
   },
-  src: {
-    sass: src + 'sass/',
-    libs: src + 'libs/',
-    img: src + 'img/'
+  src:      {
+    root: source,
+    sass:   source + 'sass/',
+    libs:   source + 'libs/',
+    img:    source + 'img/'
   }
 }
 
@@ -137,7 +140,7 @@ gulp.task('compile:sass', function() {
     .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
     .pipe(plugins.sass({outputStyle: 'expanded' }))
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
+    .pipe(plugins.autoprefixer({ browsers: ['last 2 version'] }))
     .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.write('./')) /* 1 */
     .pipe(isDeployment ? plugins.csso() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.css))
@@ -154,6 +157,7 @@ gulp.task('compile:sass', function() {
 
 gulp.task('process:images', function() {
   return gulp.src([paths.src.img + '*.{svg,png,jpg}'])
+    .pipe(plugins.newer(paths.app.img))
     .pipe(plugins.imagemin({
       progressive: true,
       use: [pngquant()]
@@ -174,16 +178,20 @@ gulp.task('process:images', function() {
  * Markup example:
  *
  *  <svg class="icon"
- *    role="img"
- *    title="Facebook">
+ *    aria-labelledby="<title> <desc>"
+ *    role="img">
+ *    <title id="<title>">Facebook</title>
+ *    <desc id="<desc>">Description</desc>
  *    <use xlink:href="path/to/icon-sprite.svg#facebook" />
  *  </svg>
  *
  * See http://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/
+ * See http://www.sitepoint.com/tips-accessible-svg/
  */
 
 gulp.task('process:icons', function() {
   return gulp.src(paths.src.img + 'icon-sprite/*.svg')
+    .pipe(plugins.newer(paths.app.img))
     .pipe(plugins.imagemin({
       svgoPlugins: [{removeViewBox: false}]
     }))
@@ -207,12 +215,13 @@ gulp.task('process:icons', function() {
  */
 
 gulp.task('process:modernizr', function() {
-  return gulp.src(paths.src + '**/*.{js,scss}')
+  return gulp.src(paths.src.root + '**/*.{js,scss}')
     .pipe(plugins.modernizr('modernizr-custom.js', {
         "options": [
           "setClasses" /* 1 */
         ]
     }))
+    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.src.libs + 'vendor'))
 });
 
@@ -229,6 +238,7 @@ gulp.task('process:modernizr', function() {
 
 gulp.task('process:base', function() {
   return gulp.src(paths.src.libs + 'base.js')
+    .pipe(plugins.newer(paths.app.libs))
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.libs));
@@ -258,12 +268,11 @@ gulp.task('concat:plugins', function() {
     gulp.src(paths.src.libs + 'vendor/*.js')
     )
     .pipe(plugins.order([ /* 1 */
-      '**/modernizr-custom.js',
       '**/fastclick.js',
       '*'
     ]))
-    .pipe(plugins.concat('plugins.js'))
-    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(plugins.newer(paths.app.libs + 'vendor/plugins.min.js'))
+    .pipe(plugins.concat('plugins.min.js'))
     .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 2 */
     .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
@@ -282,9 +291,9 @@ gulp.task('concat:plugins', function() {
 
 gulp.task('concat:plugins-respimages', function() {
   return gulp.src(mainBowerFiles({filter: '**/{lazysizes,respimage}.js'}), { base: 'bower_components'})
-    .pipe(plugins.concat('plugins.images.js'))
-    .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(plugins.uglify())
+    .pipe(plugins.newer(paths.app.libs + 'vendor/plugins.images.min.js'))
+    .pipe(plugins.concat('plugins.images.min.js'))
+    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
 
@@ -325,7 +334,8 @@ gulp.task('watch', function() {
   gulp.watch(paths.src.libs + 'base.js',
     [
       'lint:js',
-      'process:base'
+      'process:base',
+      'concat:plugins'
     ]
   ).on('change', bs.reload);
 

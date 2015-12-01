@@ -11,6 +11,11 @@
 
 // Include vendor styles
 @import 'vendor/owl.carousel';
+@import 'vendor/tablesaw.bare';
+@import 'vendor/fluidbox';
 
 // project section styles
 @import 'project/layout';
+
+// project media queries
+@import 'mq';
