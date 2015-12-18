@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Gulp Driven Frontend Development",
   "author": "Olaf Gleba",
-  "license": "none",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/olafgleba/sean.git"
@@ -22,6 +22,7 @@
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-newer": "^1.1.0",
     "gulp-order": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.1",
     "gulp-scss-lint": "^0.3.8",
