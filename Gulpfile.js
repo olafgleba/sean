@@ -20,12 +20,21 @@ var runSequence    = require('run-sequence');
 var del            = require('del');
 var pngquant       = require('imagemin-pngquant');
 
+// We need to require this explicitely, because we must
+// init a new class instance with this variable
+var cacheBuster    = require('gulp-cachebust');
+
+//  Init cachebust
+var cachebust = new cacheBuster();
+
+
 
 
 /**
  * Prepare gulp-plumber option
  * s. http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/
  */
+
 var onError = function(err) {
   console.log(err);
   this.emit('end');
@@ -44,10 +53,10 @@ var onError = function(err) {
  * (s. comments for task `build` also).
  */
 
-var isDeployment = false;
+var isProduction = false;
 
 if(plugins.util.env.production === true) {
-  isDeployment = true;
+  isProduction = true;
 }
 
 
@@ -62,17 +71,20 @@ var source = 'source/';
 
 var paths = {
   app: {
-    assets: app + 'assets/',
-    css:    app + 'assets/css/',
-    libs:   app + 'assets/libs/',
-    img:    app + 'assets/img/',
-    html:   app
+    root:        app,
+    assets_root: 'assets/',
+    assets:      app + 'assets/',
+    css:         app + 'assets/css/',
+    libs:        app + 'assets/libs/',
+    img:         app + 'assets/img/',
+    html:        app
   },
-  src:      {
+  src: {
     root: source,
-    sass:   source + 'sass/',
-    libs:   source + 'libs/',
-    img:    source + 'img/'
+    sass: source + 'sass/',
+    libs: source + 'libs/',
+    img:  source + 'img/',
+    tpls: source + 'templates/'
   }
 }
 
@@ -101,8 +113,8 @@ gulp.task('browser-sync', function() {
  * Clean app assets folder
  */
 
-gulp.task('clean:assets', function(ca) {
-    return del(paths.app.assets + '/{css,libs,img,fonts,docs}/**/*', ca)
+gulp.task('clean:app', function(ca) {
+    return del([paths.app.assets + '{css,libs,img,fonts,docs}/**/*', paths.app.root + '*.html'] , ca)
 });
 
 
@@ -139,9 +151,9 @@ gulp.task('lint:scss', function() {
 
 
 /**
- * Compile sass files, process prefixing, generate sourcemaps
- * and minify it (depending on task state (dev/production)).
- * Shove it to destination folder at least.
+ * Compile sass files, process prefixing, generate sourcemaps,
+ * bust cache, minify it (depending on task state (dev/production))
+ * and shove it to destination folder at least.
  *
  * 1. Condition wether to execute a plugin or passthru
  */
@@ -149,14 +161,38 @@ gulp.task('lint:scss', function() {
 gulp.task('compile:sass', function() {
   return gulp.src(paths.src.sass + '**/*.scss')
     .pipe(plugins.plumber({errorHandler: onError}))
-    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
+    .pipe(isProduction ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
     .pipe(plugins.sass({outputStyle: 'expanded' }))
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(plugins.autoprefixer({ browsers: ['last 2 version'] }))
-    .pipe(isDeployment ? plugins.util.noop() : plugins.sourcemaps.write('./')) /* 1 */
-    .pipe(isDeployment ? plugins.csso() : plugins.util.noop()) /* 1 */
+    .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
+    .pipe(isProduction ? plugins.util.noop() : plugins.sourcemaps.write('./')) /* 1 */
+    .pipe(isProduction ? plugins.csso() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.css))
-    .pipe(isDeployment ? plugins.util.noop() : bs.stream({match: '**/*.css'}));
+    .pipe(isProduction ? plugins.util.noop() : bs.stream({match: '**/*.css'}));
+});
+
+
+
+
+/**
+ * Get the templates source files, bust cache (depending on task
+ * state (dev/production)) and/or copy it to the destination folder.
+ * Bust cache means, that the implied references to files will be
+ * renamed (if those target files was modified) and replaced within
+ * the template files.
+ *
+ * NOTE: Never modify `.html` files within the `app/` folder. Instead
+ * solely edit the source files (`source/templates/`).
+ *
+ * 1. Condition wether to execute a plugin or pipe passthru
+ */
+
+gulp.task('process:templates', function() {
+  return gulp.src(paths.src.tpls + '**/*.tpl')
+    .pipe(isProduction ? cachebust.references() : plugins.util.noop()) /* 1 */
+    .pipe(plugins.rename({extname: '.html'}))
+    .pipe(gulp.dest(paths.app.html));
 });
 
 
@@ -233,7 +269,7 @@ gulp.task('process:modernizr', function() {
           "setClasses" /* 1 */
         ]
     }))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
+    .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.src.libs + 'vendor'))
 });
 
@@ -242,8 +278,8 @@ gulp.task('process:modernizr', function() {
 
 
 /**
- * Minify our base javascript file (depending on task state (dev/production))
- * and shove it to destination folder.
+ * Bust cache, minify our base javascript file (depending on task
+ * state (dev/production)) and shove it to the destination folder.
  *
  * 1. Condition wether to execute a plugin or passthru
  */
@@ -253,7 +289,8 @@ gulp.task('process:base', function() {
     .pipe(plugins.plumber({errorHandler: onError}))
     .pipe(plugins.newer(paths.app.libs))
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
+    .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
+    .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.libs));
 });
 
@@ -266,8 +303,8 @@ gulp.task('process:base', function() {
  * which might be exist in the source vendor folder and
  * merge both paths. Then define what order we like them to have
  * in our plugin file. Finally concatenate the merged files
- * to a new file, minify it (depending on task state (dev/production))
- * and shove it to destination folder.
+ * to a new file, bust cache, minify it (depending on task state
+ * (dev/production)) and shove it to the destination folder.
  *
  * 1. Source code order within the plugin file
  * 2. Condition wether to execute minification or pipe passthru
@@ -286,7 +323,8 @@ gulp.task('concat:plugins', function() {
     ]))
     .pipe(plugins.newer(paths.app.libs + 'vendor/plugins.min.js'))
     .pipe(plugins.concat('plugins.min.js'))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 2 */
+    .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
+    .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 2 */
     .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
 
@@ -295,9 +333,8 @@ gulp.task('concat:plugins', function() {
 
 /**
  * Get a dedicated set of vendor javascript plugins (respimages) which
- * are available in `bower_components`, concatenate
- * them to a new file, minify it and shove it to destination
- * folder.
+ * are available in `bower_components`, concatenate them to a new file,
+ * bust cache, minify it and shove it to the destination folder.
  *
  * 1. Condition wether to execute a plugin or pipe passthru
  */
@@ -306,7 +343,8 @@ gulp.task('concat:plugins-respimages', function() {
   return gulp.src(mainBowerFiles({filter: '**/{lazysizes,respimage}.js'}), { base: 'bower_components'})
     .pipe(plugins.newer(paths.app.libs + 'vendor/plugins.images.min.js'))
     .pipe(plugins.concat('plugins.images.min.js'))
-    .pipe(isDeployment ? plugins.uglify() : plugins.util.noop()) /* 1 */
+    .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
+    .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 1 */
     .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
 
@@ -314,12 +352,12 @@ gulp.task('concat:plugins-respimages', function() {
 
 
 /**
- * Get minified jquery (with map) and shove it to destination folder.
+ * Get minified jquery (with map) and shove it to the destination folder.
  */
 
 gulp.task('copy:jquery', function() {
-    return gulp.src(mainBowerFiles({ filter: '**/jquery.min.{js,map}'}), { base: 'bower_components/jquery/dist'})
-        .pipe(gulp.dest(paths.app.libs + 'vendor/'));
+  return gulp.src(mainBowerFiles({ filter: '**/jquery.min.{js,map}'}), { base: 'bower_components/jquery/dist'})
+    .pipe(gulp.dest(paths.app.libs + 'vendor/'));
 });
 
 
@@ -338,7 +376,7 @@ gulp.task('watch', function() {
 
   gulp.watch(paths.src.sass + '**/*.scss',
     [
-      'lint:scss',
+      //'lint:scss',
       'compile:sass'
     ]
   );
@@ -367,7 +405,12 @@ gulp.task('watch', function() {
   ).on('change', bs.reload);
 
 
-  gulp.watch(paths.app.html + '**/*.html').on('change', bs.reload);
+  gulp.watch(paths.src.tpls + '**/*.tpl',
+    [
+      'process:templates'
+    ]
+  ).on('change', bs.reload);
+
 });
 
 
@@ -392,9 +435,9 @@ gulp.task('watch', function() {
 
 gulp.task('build', function() {
 
-  if (isDeployment) {
+  if (isProduction) {
 
-    runSequence('clean:assets', 'process:modernizr',
+    runSequence('clean:app', 'process:modernizr',
       [
         'compile:sass',
         'copy:jquery',
@@ -403,14 +446,15 @@ gulp.task('build', function() {
         'concat:plugins-respimages',
         'process:images',
         'process:icons'
-      ]
+      ],
+      'process:templates'
     );
 
   } else {
 
-    runSequence('clean:assets', 'process:modernizr',
+    runSequence('clean:app', 'process:modernizr', 'process:templates',
       [
-        'lint:scss',
+        //'lint:scss',
         'compile:sass',
         'copy:jquery',
         'lint:js',

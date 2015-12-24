@@ -10,13 +10,13 @@
   <meta name="author" content="Olaf Gleba, <og@olafgleba.de>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="assets/css/styles.min.dc31cc38.css">
+  <link rel="stylesheet" href="assets/css/styles.min.css">
 
   <script>
     window.lazySizesConfig = window.lazySizesConfig || {};
     window.lazySizesConfig.expand = 100;
   </script>
-  <script src="assets/libs/vendor/plugins.images.min.1a536f45.js" async=""></script>
+  <script src="assets/libs/vendor/plugins.images.min.js" async=""></script>
 
   <script src="https://use.typekit.net/tos1rrw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
@@ -635,8 +635,8 @@
 
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/libs/vendor/jquery.min.js"><\/script>');</script>
-  <script src="assets/libs/vendor/plugins.min.49200cc9.js"></script>
-  <script src="assets/libs/base.min.ece8cdda.js"></script>
+  <script src="assets/libs/vendor/plugins.min.js"></script>
+  <script src="assets/libs/base.min.js"></script>
 
 </body>
 </html>
