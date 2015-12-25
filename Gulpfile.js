@@ -182,7 +182,7 @@ gulp.task('compile:sass', function() {
  * renamed (if those target files was modified) and replaced within
  * the template files.
  *
- * NOTE: Never modify `.html` files within the `app/` folder. Instead
+ * NOTE: NEVER modify `.html` files within the `app/` folder. Instead
  * solely edit the source files (`source/templates/`).
  *
  * 1. Condition wether to execute a plugin or pipe passthru
