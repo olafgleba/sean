@@ -71,13 +71,11 @@ var source = 'source/';
 
 var paths = {
   app: {
-    root:        app,
-    assets_root: 'assets/',
-    assets:      app + 'assets/',
-    css:         app + 'assets/css/',
-    libs:        app + 'assets/libs/',
-    img:         app + 'assets/img/',
-    html:        app
+    root:   app,
+    assets: app + 'assets/',
+    css:    app + 'assets/css/',
+    libs:   app + 'assets/libs/',
+    img:    app + 'assets/img/'
   },
   src: {
     root: source,
@@ -114,7 +112,7 @@ gulp.task('browser-sync', function() {
  */
 
 gulp.task('clean:app', function(ca) {
-    return del([paths.app.assets + '{css,libs,img,fonts,docs}/**/*', paths.app.root + '*.html'] , ca)
+    return del([paths.app.assets + '{css,libs,img,fonts,docs}/**/*', paths.app.root + '*.html'], ca)
 });
 
 
@@ -158,7 +156,7 @@ gulp.task('lint:scss', function() {
  * 1. Condition wether to execute a plugin or passthru
  */
 
-gulp.task('compile:sass', function() {
+gulp.task('compile:sass', ['process:modernizr'], function() {
   return gulp.src(paths.src.sass + '**/*.scss')
     .pipe(plugins.plumber({errorHandler: onError}))
     .pipe(isProduction ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
@@ -192,7 +190,7 @@ gulp.task('process:templates', function() {
   return gulp.src(paths.src.tpls + '**/*.tpl')
     .pipe(isProduction ? cachebust.references() : plugins.util.noop()) /* 1 */
     .pipe(plugins.rename({extname: '.html'}))
-    .pipe(gulp.dest(paths.app.html));
+    .pipe(gulp.dest(paths.app.root));
 });
 
 
@@ -252,25 +250,24 @@ gulp.task('process:icons', function() {
 
 
 /**
- * Spawn over all `scss` and `js` files for relevant attributes
- * and build a custom modernizr build. Shove it to source vendor
- * folder, so it can be concatenated in `plugins.min.js` afterwards,
- * e.g. we don't want to reference it as a seperate file. So this
- * task has to run before any compilation or concatenation, e.g.
- * outside the runSequenze task array.
+ * Spawn over all `scss` and `js` files for relevant attributes, bust
+ * cache (depending on task state (dev/production)) and build a custom
+ * modernizr build. Shove it to app libs vendor folder as we need this
+ * within the <head> of the page.
  *
- * 1. Set classes on html tag related to found attributes
+ * 1. Condition wether to execute a plugin or passthru
  */
 
 gulp.task('process:modernizr', function() {
   return gulp.src(paths.src.root + '**/*.{js,scss}')
-    .pipe(plugins.modernizr('modernizr-custom.js', {
+    .pipe(plugins.modernizr('modernizr-custom.min.js', {
         "options": [
           "setClasses" /* 1 */
         ]
     }))
     .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 1 */
-    .pipe(gulp.dest(paths.src.libs + 'vendor'))
+    .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
+    .pipe(gulp.dest(paths.app.libs + 'vendor/'))
 });
 
 
