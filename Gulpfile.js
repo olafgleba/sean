@@ -150,7 +150,7 @@ gulp.task('lint:scss', function() {
 
 /**
  * Compile sass files, process prefixing, generate sourcemaps,
- * bust cache, minify it (depending on task state (dev/production))
+ * bust cache and minify it (depending on task state (dev/production))
  * and shove it to destination folder at least.
  *
  * 1. Condition wether to execute a plugin or passthru
@@ -175,13 +175,14 @@ gulp.task('compile:sass', ['process:modernizr'], function() {
 
 /**
  * Get the templates source files, bust cache (depending on task
- * state (dev/production)) and/or copy it to the destination folder.
- * Bust cache means, that the implied references to files will be
- * renamed (if those target files was modified) and replaced within
- * the template files.
+ * state (dev/production)) and shove it to the destination folder.
+ * Bust cache means, that the implied references to files we like to
+ * cache (e.g. css/js) will get updated (if those target files were modified)
+ * within the template files.
  *
- * NOTE: NEVER modify `.html` files within the `app/` folder. Instead
- * solely edit the source files (`source/templates/`).
+ * NOTE: NEVER modify `.html` files within the first layer of the `app/`
+ * folder (e.g. `index.html`, `framework.html`). Instead solely edit the source
+ * files (`source/templates/`).
  *
  * 1. Condition wether to execute a plugin or pipe passthru
  */
