@@ -32,7 +32,7 @@ var cachebust = new cacheBuster();
 
 /**
  * Prepare gulp-plumber option
- * s. http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/
+ * @see http://blog.ibangspacebar.com/handling-errors-with-gulp-watch-and-gulp-plumber/
  */
 
 var onError = function(err) {
@@ -180,9 +180,9 @@ gulp.task('compile:sass', ['process:modernizr'], function() {
  * cache (e.g. css/js) will get updated (if those target files were modified)
  * within the template files.
  *
- * NOTE: NEVER modify `.html` files within the first layer of the `app/`
+ * NOTE: NEVER modify `*.html` files within the first layer of the `app/`
  * folder (e.g. `index.html`, `framework.html`). Instead solely edit the source
- * files (`source/templates/`).
+ * files (e.g. `source/templates/index.tpl`, `source/templates/framwork.tpl`).
  *
  * 1. Condition wether to execute a plugin or pipe passthru
  */
@@ -232,8 +232,8 @@ gulp.task('process:images', function() {
  *    <use xlink:href="path/to/icon-sprite.svg#facebook" />
  *  </svg>
  *
- * See http://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/
- * See http://www.sitepoint.com/tips-accessible-svg/
+ * @see http://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/
+ * @see http://www.sitepoint.com/tips-accessible-svg/
  */
 
 gulp.task('process:icons', function() {
@@ -332,7 +332,8 @@ gulp.task('concat:plugins', function() {
 /**
  * Get a dedicated set of vendor javascript plugins (respimages) which
  * are available in `bower_components`, concatenate them to a new file,
- * bust cache, minify it and shove it to the destination folder.
+ * bust cache, minify it (depending on task state (dev/production))
+ * and shove it to the destination folder.
  *
  * 1. Condition wether to execute a plugin or pipe passthru
  */
