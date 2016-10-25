@@ -5,8 +5,6 @@
  * us deal with predictable paddings and behaviour.
  */
 
-// scss-lint:disable VendorPrefix, Indentation, MergeableSelector
-
 html {
   box-sizing: border-box;
 }
@@ -25,9 +23,9 @@ html {
 /**
  * High-, page-level styling.
  *
- * 1. Set the default `font-size`, `font-family` and line-height` for the entire project,
- *    sourced from our default variables. The `font-size` is calculated to exist
- *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 1. Set the default `font-size`, `font-family`, `font-weight`and line-height`
+ *    for the entire project, sourced from our default variables. The `font-size` is
+ *    calculated to exist in ems, the `line-height` is calculated to exist unitlessly.
  * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
  *    navigating between pages that do/do not have enough content to produce
  *    scrollbars naturally.
@@ -40,6 +38,7 @@ html {
 html {
   font-size: ($base-font-size / 16px) * 1em; /* 1 */
   font-family: $base-font-family; /* 1 */
+  font-weight: $base-font-weight; /* 1 */
   line-height: $base-line-height / $base-font-size; /* 1 */
   background-color: $base-background-color;
   color: $base-text-color;
@@ -104,5 +103,3 @@ h6,
 %zeta {
   @include font-size($heading-size-6);
 }
-
-// scss-lint:enable VendorPrefix, Indentation, MergeableSelector

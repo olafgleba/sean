@@ -17,10 +17,6 @@
   <script src="https://use.typekit.net/tos1rrw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
 
-  <script>
-    window.lazySizesConfig = window.lazySizesConfig || {};
-    window.lazySizesConfig.expand = 100;
-  </script>
   <script src="assets/libs/vendor/plugins.images.min.js" async=""></script>
 </head>
 

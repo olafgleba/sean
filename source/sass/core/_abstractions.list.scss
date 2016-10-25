@@ -15,7 +15,8 @@ $list-padding--large: double($list-padding) !default;
 $list-padding--huge:  quadruple($list-padding) !default;
 
 
-// scss-lint:disable NameFormat
+
+/** @define list-bare */
 
 /**
  * List bare
@@ -46,6 +47,8 @@ $list-padding--huge:  quadruple($list-padding) !default;
  *    `inline-block` child elements.
  * 2. Reset font size change made in `list-inline-block`.
  */
+
+/** @define list-inline-block */
 
 .list-inline-block,
 %list-inline-block {

@@ -134,15 +134,20 @@ gulp.task('lint:js', function() {
 
 
 /**
- * Lint source sass files
+ * Lint source scss source files
+ *
+ * Uses `./.stylelintrc` file for configuration rules and such.
  */
 
 gulp.task('lint:scss', function() {
-  return gulp.src([paths.src.sass + '**/*.scss', '!' + paths.src.sass + 'vendor/*'])
-    .pipe(plugins.scssLint({
-        config: './scss-lint.yml'
-    }))
-    .pipe(plugins.scssLint.failReporter('E'));
+  return gulp.src([paths.src.sass + 'core/**/*.scss', '!' + paths.src.sass + 'vendor/*'])
+    .pipe(plugins.stylelint({
+        failAfterError: false,
+        syntax: 'scss',
+        reporters: [
+          {formatter: 'string', console: true}
+        ]
+    }));
 });
 
 
@@ -156,7 +161,7 @@ gulp.task('lint:scss', function() {
  * 1. Condition wether to execute a plugin or passthru
  */
 
-gulp.task('compile:sass', ['process:modernizr'], function() {
+gulp.task('compile:sass', function() {
   return gulp.src(paths.src.sass + '**/*.scss')
     .pipe(plugins.plumber({errorHandler: onError}))
     .pipe(isProduction ? plugins.util.noop() : plugins.sourcemaps.init()) /* 1 */
@@ -225,7 +230,7 @@ gulp.task('process:images', function() {
  * Markup example:
  *
  *  <svg class="icon"
- *    aria-labelledby="<title> <desc>"
+ *    aria-labelledby="<title> <desc>"gul
  *    role="img">
  *    <title id="<title>">Facebook</title>
  *    <desc id="<desc>">Description</desc>
@@ -375,7 +380,8 @@ gulp.task('watch', function() {
 
   gulp.watch(paths.src.sass + '**/*.scss',
     [
-      //'lint:scss',
+      'lint:scss',
+      'process:modernizr',
       'compile:sass'
     ]
   );
@@ -453,7 +459,7 @@ gulp.task('build', function() {
 
     runSequence('clean:app', 'process:modernizr', 'process:templates',
       [
-        //'lint:scss',
+        'lint:scss',
         'compile:sass',
         'copy:jquery',
         'lint:js',

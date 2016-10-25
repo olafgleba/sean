@@ -175,7 +175,7 @@ $use-fractions: true !default;
 /**
  * Spawn a group of modifiers (tiny, small, large, huge) to arbitrary
  * classes, based on our base spacing unit settings. Pass any appropriate
- * attributes as argument.
+ * attribute as argument.
  *
  * Don't use this on buttons or grid abstractions. These abstractions have
  * their own set of size modifiers.

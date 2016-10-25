@@ -1,7 +1,7 @@
 /**
  * Core breadcrumb component
  *
- * A component tho utilize breadcrumb navigations.
+ * A component to utilize breadcrumb navigations.
  */
 
 $breadcrumb-margin:         $base-spacing-unit !default;
@@ -21,7 +21,7 @@ $breadcrumb-margin--huge:   quadruple($breadcrumb-margin) !default;
   flex-wrap: wrap;
 
   > li {
-    @extend %c-breadcrumb__item;
+    @extend .c-breadcrumb__item;
   }
 }
 
@@ -52,7 +52,7 @@ $breadcrumb-margin--huge:   quadruple($breadcrumb-margin) !default;
 }
 
 .c-breadcrumb__current {
-  //
+
 }
 
 
@@ -62,12 +62,9 @@ $breadcrumb-margin--huge:   quadruple($breadcrumb-margin) !default;
 /**
  * Modifiers: Blow/shrink breadcrumb items
  *
- * Generic size utilities. Is applicable on every list abstraction except
- * where flex box is involved.
- *
  * Example:
- *   <div class="list-table list--tiny"></div>
- *   <div class="list-stacked list--large"></div>
+ *   <div class="c-breadcrumb c-breadcrumb--tiny"></div>
+ *   <div class="c-breadcrumb c-breadcrumb--large"></div>
  */
 
 .c-breadcrumb--tiny {
