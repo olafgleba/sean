@@ -9,9 +9,6 @@ var plugins = require('gulp-load-plugins')();
  * Load non `gulp-*` prefixed plugins
  */
 
-// Uncomment for debugging
-//require('time-require');
-
 var bs             = require('browser-sync').create();
 var opn            = require('opn');
 var mainBowerFiles = require('main-bower-files');
@@ -27,6 +24,15 @@ var cacheBuster    = require('gulp-cachebust');
 //  Init cachebust
 var cachebust = new cacheBuster();
 
+// postcss
+var pxtorem = require('postcss-pxtorem');
+
+var processors = [
+  pxtorem({
+    replace: true,
+    propWhiteList: ['font-size']
+  })
+]
 
 
 
@@ -168,9 +174,11 @@ gulp.task('compile:sass', function() {
     .pipe(plugins.sass({outputStyle: 'expanded' }))
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(plugins.autoprefixer({ browsers: ['last 2 version'] }))
+    .pipe(plugins.postcss(processors))
     .pipe(isProduction ? cachebust.resources() : plugins.util.noop())
     .pipe(isProduction ? plugins.util.noop() : plugins.sourcemaps.write('./')) /* 1 */
     .pipe(isProduction ? plugins.csso() : plugins.util.noop()) /* 1 */
+    .pipe(plugins.size())
     .pipe(gulp.dest(paths.app.css))
     .pipe(isProduction ? plugins.util.noop() : bs.stream({match: '**/*.css'}));
 });
@@ -269,6 +277,9 @@ gulp.task('process:modernizr', function() {
     .pipe(plugins.modernizr('modernizr-custom.min.js', {
         "options": [
           "setClasses" /* 1 */
+        ],
+        "excludeTests": [
+          "sizes"
         ]
     }))
     .pipe(isProduction ? plugins.uglify() : plugins.util.noop()) /* 1 */

@@ -27,6 +27,14 @@ var App = (function() {
     // FastClick initialisation
     FastClick.attach(document.body);
 
+    // Avoid FOIT on web font loading, s. https://github.com/bramstein/fontfaceobserver
+    var font = new FontFaceObserver('proxima-nova-1');
+    font.load().then(function() {
+      document.documentElement.className += ' fonts-loaded';
+    }, function() {
+      console.log('Font is not available after waiting 3 seconds');
+    });
+
     // svg4everybody initialisation
     svg4everybody();
 
@@ -46,6 +54,7 @@ var App = (function() {
   };
 
 })();
+
 
 
 

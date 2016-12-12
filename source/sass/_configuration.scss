@@ -30,7 +30,6 @@ $orange: #f60;
 /**
  * 2. Project aware colors
  */
-
 $base-link-color:       $orange;
 $base-link-hover-color: lighten($orange, 10%);
 
@@ -60,6 +59,7 @@ $icon-fill-color: $black;
 
 // Framework
 $framework-accent-color: $orange;
+$framework-divider-color: $gray;
 
 
 
@@ -76,13 +76,13 @@ $framework-accent-color: $orange;
  */
 
 // See `_core.variables.scss`
-
-$base-font-size:        16px;
-$base-line-height:      24px;
-$base-font-family:      ariel, sans-serif;
-$base-font-weight:      400;
-$base-text-color:       $black;
-$base-background-color: $white;
+$base-font-size:           18px;
+$base-line-height:         26px;
+$base-font-family:         verdana, sans-serif;
+$base-font-family-webfont: 'proxima-nova-1', 'proxima-nova-2', sans-serif;
+$base-font-weight:         400;
+$base-text-color:          $black;
+$base-background-color:    $white;
 
 
 
@@ -112,7 +112,6 @@ $heading-size-6: 14px !default;
 
 
 // See `_core.variables.scss`
-
 $breakpoints: (
   'palm'          'screen and (max-width: 44.9375em)',
   'lap'           'screen and (min-width: 45em) and (max-width: 63.9375em)',
@@ -121,12 +120,6 @@ $breakpoints: (
   'desk'          'screen and (min-width: 64em)',
   'desk-wide'     'screen and (min-width: 75em)'
 ) !default;
-
-
-
-
-// See `_core.mixins.scss`, @mixin widths
-$use-fractions: true;
 
 
 
@@ -153,14 +146,9 @@ $widths-columns: (
  * leave it as is to pass by the defaults.
  */
 
-// Grid
-$grid-font-size:             $base-font-size !default;
-$grid-gutter-size:           $base-spacing-unit !default;
 
-
-
-// Flexgrid
-$flexgrid-gutter-size:       $base-spacing-unit !default;
+// Grid (Flex)
+$grid-gutter-size:       $base-spacing-unit !default;
 
 
 
@@ -174,12 +162,6 @@ $button-color:               $btn-color;
 $button-bg-color:            $btn-bg-color;
 $button-disabled-opacity:    0.5 !default;
 $button-padding:             $base-spacing-unit !default;
-
-
-
-// Button group
-$button-group-font-size:     $base-font-size !default;
-$button-group-border-radius: 0 !default;
 
 
 

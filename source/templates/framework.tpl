@@ -33,6 +33,7 @@
       <li class="c-breadcrumb__current">Level 3 (current)</li>
     </ul>
 
+    <hr />
 
     <h1>.media</h1>
 
@@ -42,6 +43,7 @@
       <div class="media__content"><p>some content</p></div>
     </div>
 
+    <hr />
 
     <h1>Lists</h1>
 
@@ -58,7 +60,7 @@
     </ul>
 
     <div class="grid">
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <h2>.list-bare</h2>
         <p> <code>.list-bare</code> wird i.d.R. nicht direkt eingsetzt, sondern dient als Ableitung für anderen Listen Komponenten.</p>
         <ul class="list-bare">
@@ -68,7 +70,7 @@
         </ul>
       </div>
 
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <h2>.list-inline-block</h2>
         <p> <code>.list-inline-block</code> richtet Zeilen horizontal aus.</p>
         <ul class="list-inline-block">
@@ -77,7 +79,7 @@
           <li>item 3</li>
         </ul>
       </div>
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <h2>.list-stacked</h2>
         <p> <code>.list-stacked</code> richtet Zeilen als Block vertikal aus.</p>
         <ul class="list-stacked">
@@ -88,7 +90,7 @@
         </ul>
       </div>
 
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <h2>.list-table</h2>
         <p> <code>.list-table</code> richtet Zeilen horizontal als Pseudo-Tabellenzeile aus. Die Zeilen nehmen die ganze Viewport-Breite ein.</p>
         <ul class="list-table list-table--blockylinks">
@@ -99,7 +101,7 @@
         </ul>
       </div>
 
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <h2>.list-chart</h2>
         <p> <code>.list-chart</code> stellt jeweils zwei listenzeilen (label/value) gegenüber. Sinnvoll für Preisangaben etc.. Auch (zumeist sinnvoller) auf <code>dl</code>-Listen anwendbar. Align Modifier (e.g. <code>--align-xxx</code>) können hier nicht genutzt werden. Die Zeilen nehmen die ganze Viewport-Breite ein.</p>
         <ul class="list-chart">
@@ -112,386 +114,253 @@
 
     </div>
 
+    <hr />
 
     <h1>respimg / layzload</h1>
     <p>Hinweis für alte Hirne: Welches Bilder initial geladen wird, ist nicht abhängig vom Browser-Viewport, sondern bezieht sich immer auf den verhandenen Platz im Kontext(!) des Bildes. Bspw. wird die kleinere Version geladen, wenn das Bild einer Grid-Spalte steht, die bei größeren Viewports nur ein Drittel des Platzes bekommen sollen. Ist die größtmögliche Source einmal geladen, wird diese für alle Ansichten verwendet, resp. die kleineren Sourcen werden nicht nachgeladen (gut so!).</p>
 
     <div class="grid grid--align-center">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+      <div class="grid__cell u-1of3-lap-and-up u-1of1-palm">
         <img data-sizes="auto" src="http://placehold.it/480x320/FF4600/000000?text=fallback" data-srcset="http://placehold.it/480x320/FF4600/000000?text=480x320+/+9.26 480w, http://placehold.it/650x433/8ED42B/000000?text=650x433+/+12.55 650w" alt="" class="lazyload" />
       </div>
     </div>
 
+    <hr />
 
-    <h1>Grid</h1>
+    <h1>Grid (Flex)</h1>
+
+    <div class="grid grid--fit">
+      <div class="grid__cell">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          <a class="test" href="#">
+            <svg class="icon icon-twitter" role="img" title="Twitter">
+              <use xlink:href="assets/img/icon-sprite.svg#icon-twitter" />
+            </svg>
+            Third column
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div class="grid">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Second column</div>
+      <div class="grid__cell u-grid u-1of2-lap-and-up">
+        <div> grid, 1of2 lap-and-up</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>
-          <a class="test" href="#">
-            <svg class="icon icon-twitter" role="img" title="Twitter">
-              <use xlink:href="assets/img/icon-sprite.svg#icon-twitter" />
-            </svg>
-            Third column
-          </a>
-        </div>
+      <div class="grid__cell u-grid u-1of2-lap-and-up">
+        <div> 1of1, 1of2 lap-and-up</div>
       </div>
     </div>
 
-    <h1>grid--text-right</h1>
-    <div class="grid grid--text-right">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Second column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+    <h1>grid--gutter</h1>
+    <div class="grid grid--gutter">
+      <div class="grid__cell u-1of4">
         <div>First column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>
-          <a class="test" href="#">
-            <svg class="icon icon-twitter" role="img" title="Twitter">
-              <use xlink:href="assets/img/icon-sprite.svg#icon-twitter" />
-            </svg>
-            Third column
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <h1>grid--text-center</h1>
-    <div class="grid grid--text-center">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+      <div class="grid__cell u-1of4">
         <div>Second column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+      <div class="grid__cell u-1of4">
         <div>Third column</div>
       </div>
+      <div class="grid__cell u-1of4">
+        <div>Fourth column</div>
+      </div>
     </div>
 
-    <h1>grid--middle</h1>
-    <div class="grid grid--middle">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+    <h1>grid--gutter-tiny</h1>
+    <div class="grid grid--gutter-tiny">
+      <div class="grid__cell u-1of4">
         <div>First column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div style="min-height: 5em;">Second column</div>
+      <div class="grid__cell u-1of4">
+        <div>Second column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+      <div class="grid__cell u-1of4">
+        <div>Third column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Fourth column</div>
+      </div>
+    </div>
+
+    <h1>grid--gutter-small</h1>
+    <div class="grid grid--gutter-small">
+      <div class="grid__cell u-1of4">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Third column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Fourth column</div>
+      </div>
+    </div>
+
+    <h1>grid--gutter-large</h1>
+    <div class="grid grid--gutter-large">
+      <div class="grid__cell u-1of4">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Third column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Fourth column</div>
+      </div>
+    </div>
+
+    <h1>grid--gutter-huge</h1>
+    <div class="grid grid--gutter-huge">
+      <div class="grid__cell u-1of4">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Third column</div>
+      </div>
+      <div class="grid__cell u-1of4">
+        <div>Fourth column</div>
+      </div>
+    </div>
+
+
+
+
+
+    <h1>grid--top (default)</h1>
+    <div class="grid grid--fit grid--gutter grid--equal-height">
+      <div class="grid__cell">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell">
+        <div style="min-height: 10em;">Second column (min-height: 10em;)</div>
+      </div>
+      <div class="grid__cell">
         <div>Third column</div>
       </div>
     </div>
 
     <h1>grid--bottom</h1>
-    <div class="grid grid--bottom">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+    <div class="grid grid--fit grid--bottom">
+      <div class="grid__cell">
         <div>First column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div style="min-height: 5em;">Second column</div>
+      <div class="grid__cell">
+        <div style="min-height: 8em;">Second column</div>
       </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
+      <div class="grid__cell">
         <div>Third column</div>
       </div>
     </div>
 
-    <h1>grid__cell--center (.grid__cell)</h1>
+    <h1>grid--right</h1>
+    <div class="grid grid--right">
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>Third column</div>
+      </div>
+    </div>
+
+
+    <h1>grid--center</h1>
+    <div class="grid grid--center">
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>Second column</div>
+      </div>
+      <div class="grid__cell" style="flex-basis: 25%;">
+        <div>Third column</div>
+      </div>
+    </div>
+
+    <h1>grid--text-center</h1>
+    <div class="grid grid--text-center">
+      <div class="grid__cell">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell">
+        <div style="min-height: 5em;">Second column</div>
+      </div>
+      <div class="grid__cell">
+        <div>Third column</div>
+      </div>
+    </div>
+
+    <h1>grid--text-right</h1>
+    <div class="grid grid--text-right">
+      <div class="grid__cell">
+        <div>First column</div>
+      </div>
+      <div class="grid__cell">
+        <div style="min-height: 5em;">Second column</div>
+      </div>
+      <div class="grid__cell">
+        <div>Third column</div>
+      </div>
+    </div>
+
+
+    <h1>grid cell modifiers (.grid__cell)</h1>
     <div class="grid">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
+      <div class="grid__cell grid__cell--center">
+        <div>grid__cell--center</div>
       </div>
-      <div class="grid__cell grid__cell--center u-1/3-lap-and-up u-1/1-palm">
-        <div>Second column - horizontally centered</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>grid__cell--text-center (.grid__cell)</h1>
-    <div class="grid">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell grid__cell--text-center u-1/3-lap-and-up u-1/1-palm">
-        <div style="min-height: 5em;">Text centered</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>grid__cell--text-right (.grid__cell)</h1>
-    <div class="grid">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell grid__cell--text-right u-1/3-lap-and-up u-1/1-palm">
-        <div>Text right align</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Third column</div>
-      </div>
-    </div>
-
-
-    <h1>grid--gutter</h1>
-    <div class="grid grid--gutter-large">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>grid--gutter, nested grid</h1>
-    <div class="grid grid--gutter-large">
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div class="grid">
-          <div class="grid__cell u-1/2-lap-and-up u-1/1-palm">
-            <div>First column</div>
-          </div>
-          <div class="grid__cell u-1/2-lap-and-up u-1/1-palm">
-            <div style="min-height: 5em;">Second column</div>
-          </div>
-        </div>
-      </div>
-      <div class="grid__cell u-1/3-lap-and-up u-1/1-palm">
-        <div>Third column</div>
-      </div>
-    </div>
-
-
-
-    <h1>Flexgrid</h1>
-
-    <div class="flexgrid">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>
-          <a class="test" href="#">
-            <svg class="icon icon-twitter" role="img" title="Twitter">
-              <use xlink:href="assets/img/icon-sprite.svg#icon-twitter" />
-            </svg>
-            Third column
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="flexgrid">
-      <div class="flexgrid__cell">
-        <div>Auto</div>
-      </div>
-      <div class="flexgrid__cell u-1/3">
-        <div> 1/3</div>
-      </div>
-    </div>
-
-    <div class="flexgrid">
-      <div class="flexgrid__cell u-1/1 u-1/2-lap-and-up">
-        <div> 1/1, 1/2 lap-and-up</div>
-      </div>
-      <div class="flexgrid__cell u-1/1 u-1/2-lap-and-up">
-        <div> 1/1, 1/2 lap-and-up</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--gutter</h1>
-    <div class="flexgrid flexgrid--gutter">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--gutter-tiny</h1>
-    <div class="flexgrid flexgrid--gutter-tiny">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--gutter-small</h1>
-    <div class="flexgrid flexgrid--gutter-small">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--gutter-large</h1>
-    <div class="flexgrid flexgrid--gutter-large">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--gutter-huge</h1>
-    <div class="flexgrid flexgrid--gutter-huge">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-
-
-
-
-    <h1>flexgrid--top (default)</h1>
-    <div class="flexgrid flexgrid--top">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--bottom</h1>
-    <div class="flexgrid flexgrid--bottom">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--center</h1>
-    <div class="flexgrid flexgrid--center">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--text-center</h1>
-    <div class="flexgrid flexgrid--text-center">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-    <h1>flexgrid--text-right</h1>
-    <div class="flexgrid flexgrid--text-right">
-      <div class="flexgrid__cell">
-        <div>First column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div style="min-height: 5em;">Second column</div>
-      </div>
-      <div class="flexgrid__cell">
-        <div>Third column</div>
-      </div>
-    </div>
-
-
-    <h1>flexgrid cell modifiers (.flexgrid__cell)</h1>
-    <div class="flexgrid">
-      <div class="flexgrid__cell flexgrid__cell--center">
-        <div>flexgrid__cell--center</div>
-      </div>
-      <div class="flexgrid__cell">
+      <div class="grid__cell">
         <div style="min-height: 5em;">None (default: top)</div>
       </div>
-      <div class="flexgrid__cell flexgrid__cell--bottom">
-        <div>flexgrid__cell--bottom</div>
+      <div class="grid__cell grid__cell--bottom">
+        <div>grid__cell--bottom</div>
       </div>
-      <div class="flexgrid__cell flexgrid__cell--top">
-        <div>flexgrid__cell--top</div>
+      <div class="grid__cell grid__cell--top">
+        <div>grid__cell--top</div>
       </div>
-      <div class="flexgrid__cell flexgrid__cell--text-center">
-        <div>flexgrid__cell--text-center</div>
+      <div class="grid__cell grid__cell--text-center">
+        <div>grid__cell--text-center</div>
       </div>
-      <div class="flexgrid__cell flexgrid__cell--text-right">
-        <div>flexgrid__cell--text-right</div>
+      <div class="grid__cell grid__cell--text-right">
+        <div>grid__cell--text-right</div>
       </div>
     </div>
 
 
 
-    <h1>Nested flexgrid</h1>
-    <div class="flexgrid flexgrid--gutter">
-      <div class="flexgrid__cell">
+    <h1>Nested grid</h1>
+    <div class="grid grid--fit">
+      <div class="grid__cell">
         <div>First column</div>
       </div>
-      <div class="flexgrid__cell">
-        <div class="flexgrid">
-          <div class="flexgrid__cell">
+      <div class="grid__cell">
+        <div class="grid">
+          <div class="grid__cell">
             <div class="u-text-center">First column</div>
           </div>
-          <div class="flexgrid__cell">
+          <div class="grid__cell">
             <div>Second column</div>
           </div>
         </div>
       </div>
-      <div class="flexgrid__cell">
+      <div class="grid__cell">
         <div>Third column</div>
       </div>
     </div>
@@ -502,19 +371,19 @@
     <h1>Button</h1>
 
     <div class="grid">
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <a href="#" class="button">.button</a>
       </div>
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <a href="#" class="button button--tiny">.button--tiny</a>
       </div>
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <a href="#" class="button button--small">.button--small</a>
       </div>
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <a href="#" class="button button--large">.button--large</a>
       </div>
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
         <a href="#" class="button button--huge">.button--huge</a>
       </div>
     </div>
@@ -556,7 +425,7 @@
     <h1>Table</h1>
 
     <div class="grid">
-      <div class="grid__cell u-1/1">
+      <div class="grid__cell u-1of1">
 
           <!-- <table class="table table--border table--large" data-tablesaw-mode="stack"> -->
 

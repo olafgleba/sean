@@ -11,7 +11,8 @@
     "respimage": "~1.4.0",
     "tablesaw": "~1.0.4",
     "fluidbox": "1.4.3",
-    "svg4everybody": "~2.0.0"
+    "svg4everybody": "~2.0.0",
+    "fontfaceobserver": "^2.0.5"
   },
   "overrides": {
     "respimage": {
