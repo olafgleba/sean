@@ -1,0 +1,29 @@
+/**
+ * framework.scss
+ */
+
+// @import 'core/abstractions.grid';
+
+/**
+ * Framework related styles
+ */
+
+.framework .grid {
+  margin-bottom: 5em;
+}
+
+.framework .grid__cell > div {
+  background-color: $framework-accent-color;
+  //margin-bottom: 1em;
+  padding: 1rem;
+}
+
+.framework .grid__cell .grid__cell > div {
+  background-color: green;
+  //margin-bottom: 1em;
+}
+
+.framework hr {
+  border: 2px solid $framework-divider-color;
+  margin: $base-spacing-unit 0;
+}
