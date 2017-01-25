@@ -10,6 +10,9 @@
   <meta name="author" content="Olaf Gleba, <og@olafgleba.de>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  {% include 'includes/favicon.nunjucks' %}
+  {% import 'macros/icon.nunjucks' as icon %}
+
   <link rel="stylesheet" href="assets/css/styles.min.css">
 
   <script src="assets/libs/vendor/modernizr-custom.min.js" async=""></script>

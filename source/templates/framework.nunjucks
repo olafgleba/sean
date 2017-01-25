@@ -10,6 +10,9 @@
   <meta name="author" content="Olaf Gleba, <og@olafgleba.de>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  {% include 'includes/favicon.nunjucks' %}
+  {% import 'macros/icon.nunjucks' as icon %}
+
   <link rel="stylesheet" href="assets/css/styles.min.css">
 
   <script src="assets/libs/vendor/modernizr-custom.min.js" async=""></script>
@@ -131,18 +134,23 @@
 
     <div class="grid grid--fit">
       <div class="grid__cell">
-        <div>First column</div>
-      </div>
-      <div class="grid__cell">
-        <div>Second column</div>
+        <div>
+          <a class="test" href="#">
+            {{ icon.source('twitter', 'huge', 'Twitter Icon', 'Twitter Icon um die Verbindung zu Twitter zu verdeutlichen', 'img') }}
+          </a>
+        </div>
       </div>
       <div class="grid__cell">
         <div>
           <a class="test" href="#">
-            <svg class="icon icon-twitter" role="img" title="Twitter">
-              <use xlink:href="assets/img/icon-sprite.svg#icon-twitter" />
-            </svg>
-            Third column
+            {{ icon.source('facebook', '', 'Facebook Icon', 'Beschreibung des Facebook Icons') }}
+          </a>
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          <a class="test" href="#">
+            {{ icon.source('vimeo', 'large') }}
           </a>
         </div>
       </div>

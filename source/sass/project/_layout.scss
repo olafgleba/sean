@@ -39,13 +39,13 @@ body { }
 }
 
 .icon--large {
-  width: (($base-font-size * 2) / 16px) * 1em;
-  height: (($base-font-size * 2) / 16px) * 1em;
+  width: (($base-font-size * 2) / $base-font-size) * 1em;
+  height: (($base-font-size * 2) / $base-font-size) * 1em;
 }
 
 .icon--huge {
-  width: (($base-font-size * 4) / 16px) * 1em;
-  height: (($base-font-size * 4) / 16px) * 1em;
+  width: (($base-font-size * 4) / $base-font-size) * 1em;
+  height: (($base-font-size * 4) / $base-font-size) * 1em;
 }
 
 

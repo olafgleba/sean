@@ -49,6 +49,27 @@ var onError = function(err) {
 
 
 
+
+
+/**
+ * Functions
+ *
+ * Miscellaneous functions to support tasks
+ */
+
+/**
+ * Generates random number
+ * @return {string} random number
+ */
+
+function randomHash() {
+    return Math.random()*0xfff|0;
+}
+
+
+
+
+
 /**
  * Some state variables
  *
@@ -84,11 +105,12 @@ var paths = {
     img:    app + 'assets/img/'
   },
   src: {
-    root: source,
-    sass: source + 'sass/',
-    libs: source + 'libs/',
-    img:  source + 'img/',
-    tpls: source + 'templates/'
+    root:    source,
+    favicon: source + 'favicon/',
+    sass:    source + 'sass/',
+    libs:    source + 'libs/',
+    img:     source + 'img/',
+    tpls:    source + 'templates/'
   }
 }
 
@@ -186,6 +208,7 @@ gulp.task('compile:sass', function() {
 
 
 
+
 /**
  * Get the templates source files, bust cache (depending on task
  * state (dev/production)) and shove it to the destination folder.
@@ -195,17 +218,56 @@ gulp.task('compile:sass', function() {
  *
  * NOTE: NEVER modify `*.html` files within the first layer of the `app/`
  * folder (e.g. `index.html`, `framework.html`). Instead solely edit the source
- * files (e.g. `source/templates/index.tpl`, `source/templates/framwork.tpl`).
+ * files (e.g. `source/templates/index.nunjucks`, `source/templates/framwork.nunjucks`).
+ *
+ * 1. Condition wether to execute a plugin or pipe passthru
+ */
+
+
+/**
+ * [manageEnvironment description]
+ * @param  {[type]} environment [description]
+ * @return {[type]}             [description]
+ */
+var expandEnv = function(environment) {
+
+  //
+  environment.addGlobal('randomHash', randomHash);
+
+  // environment.addFilter('functionName', function(str) {
+  //   return str + xxx;
+  // });
+}
+
+
+
+
+/**
+ * Get the templates source files, bust cache (depending on task
+ * state (dev/production)) and shove it to the destination folder.
+ * Bust cache means, that the implied references to files we like to
+ * cache (e.g. css/js) will get updated (if those target files were modified)
+ * within the template files.
+ *
+ * NOTE: NEVER modify `*.html` files within the first layer of the `app/`
+ * folder (e.g. `index.html`, `framework.html`). Instead solely edit the source
+ * files (e.g. `source/templates/index.nunjucks`, `source/templates/framwork.nunjucks`).
  *
  * 1. Condition wether to execute a plugin or pipe passthru
  */
 
 gulp.task('process:templates', function() {
-  return gulp.src(paths.src.tpls + '**/*.tpl')
+  return gulp.src(paths.src.tpls + '*.nunjucks')
+    .pipe(plugins.plumber({errorHandler: onError}))
     .pipe(isProduction ? cachebust.references() : plugins.util.noop()) /* 1 */
-    .pipe(plugins.rename({extname: '.html'}))
+    .pipe(plugins.nunjucksRender({
+      path: paths.src.tpls,
+      manageEnv: expandEnv
+    }))
     .pipe(gulp.dest(paths.app.root));
 });
+
+
 
 
 
@@ -216,12 +278,13 @@ gulp.task('process:templates', function() {
  */
 
 gulp.task('process:images', function() {
-  return gulp.src([paths.src.img + '*.{svg,png,jpg}'])
+  return gulp.src([paths.src.img + '*.{png,jpg,jpeg}'])
     .pipe(plugins.newer(paths.app.img))
-    .pipe(plugins.imagemin({
-      progressive: true,
-      use: [pngquant()]
-    }))
+    .pipe(plugins.imagemin([
+        plugins.imagemin.jpegtran({progressive: true}),
+        plugins.imagemin.optipng()
+      ]
+    ))
     .pipe(gulp.dest(paths.app.img));
 });
 
@@ -238,8 +301,8 @@ gulp.task('process:images', function() {
  * Markup example:
  *
  *  <svg class="icon"
- *    aria-labelledby="<title> <desc>"gul
- *    role="img">
+ *    aria-labelledby="<title> <desc>"
+ *    role="presentation">
  *    <title id="<title>">Facebook</title>
  *    <desc id="<desc>">Description</desc>
  *    <use xlink:href="path/to/icon-sprite.svg#facebook" />
@@ -252,13 +315,16 @@ gulp.task('process:images', function() {
 gulp.task('process:icons', function() {
   return gulp.src(paths.src.img + 'icon-sprite/*.svg')
     .pipe(plugins.newer(paths.app.img))
-    .pipe(plugins.imagemin({
-      svgoPlugins: [{removeViewBox: false}]
-    }))
+    .pipe(plugins.imagemin([
+        plugins.imagemin.svgo({
+          plugins: [{removeViewBox: false}]
+        })
+    ]))
     .pipe(plugins.rename({prefix: 'icon-'}))
-    .pipe(plugins.svgstore())
+    .pipe(plugins.svgstore({ inlineSvg: true }))
     .pipe(gulp.dest(paths.app.img));
 });
+
 
 
 
@@ -377,7 +443,6 @@ gulp.task('copy:jquery', function() {
 
 
 
-
 /**
  * Watch several files and folder for changes.
  *
@@ -421,13 +486,124 @@ gulp.task('watch', function() {
   ).on('change', bs.reload);
 
 
-  gulp.watch(paths.src.tpls + '**/*.tpl',
+  // gulp.watch(paths.src.tpls + '**/*.tpl',
+  //   [
+  //     'process:templates'
+  //   ]
+  // ).on('change', bs.reload);
+
+  gulp.watch(paths.src.tpls + '**/*.nunjucks',
     [
       'process:templates'
     ]
   ).on('change', bs.reload);
 
 });
+
+
+
+
+
+
+
+
+
+
+var realFavicon = require ('gulp-real-favicon');
+var fs = require('fs');
+
+// File where the favicon markups are stored
+var FAVICON_DATA_FILE = 'faviconData.json';
+
+// Generate the icons. This task takes a few seconds to complete.
+// You should run it at least once to create the icons. Then,
+// you should run it whenever RealFaviconGenerator updates its
+// package (see the check-for-favicon-update task below).
+
+gulp.task('generate-favicon', function(done) {
+  plugins.realFavicon.generateFavicon({
+    masterPicture: paths.src.favicon + 'favicon.png',
+    dest: paths.app.root,
+    iconsPath: '/',
+    design: {
+      ios: {
+        pictureAspect: 'noChange',
+        assets: {
+          ios6AndPriorIcons: false,
+          ios7AndLaterIcons: false,
+          precomposedIcons: false,
+          declareOnlyDefaultIcon: true
+        }
+      },
+      desktopBrowser: {},
+      windows: {
+        pictureAspect: 'noChange',
+        backgroundColor: '#ff2288',
+        onConflict: 'override',
+        assets: {
+          windows80Ie10Tile: false,
+          windows10Ie11EdgeTiles: {
+            small: false,
+            medium: true,
+            big: false,
+            rectangle: false
+          }
+        }
+      },
+      androidChrome: {
+        pictureAspect: 'noChange',
+        themeColor: '#ffffff',
+        manifest: {
+          name: 'Sean',
+          display: 'standalone',
+          orientation: 'notSet',
+          onConflict: 'override',
+          declared: true
+        },
+        assets: {
+          legacyIcon: false,
+          lowResolutionIcons: false
+        }
+      },
+      safariPinnedTab: {
+        pictureAspect: 'blackAndWhite',
+        threshold: 50,
+        themeColor: '#000000'
+      }
+    },
+    settings: {
+      scalingAlgorithm: 'Mitchell',
+      errorOnImageTooSmall: false
+    },
+    markupFile: FAVICON_DATA_FILE
+  }, function() {
+    done();
+  });
+});
+
+// Inject the favicon markups in your HTML pages. You should run
+// this task whenever you modify a page. You can keep this task
+// as is or refactor your existing HTML pipeline.
+gulp.task('inject-favicon-markups', function() {
+  return gulp.src([ paths.src.tpls + 'includes/favicon.nunjucks' ])
+    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
+    .pipe(gulp.dest(paths.src.tpls + 'includes/'));
+});
+
+// Check for updates on RealFaviconGenerator (think: Apple has just
+// released a new Touch icon along with the latest version of iOS).
+// Run this task from time to time. Ideally, make it part of your
+// continuous integration system.
+gulp.task('check-for-favicon-update', function(done) {
+  var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
+  realFavicon.checkForUpdates(currentVersion, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+});
+
+
 
 
 
