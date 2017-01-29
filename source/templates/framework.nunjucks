@@ -130,27 +130,32 @@
 
     <hr />
 
-    <h1>Grid (Flex)</h1>
+    <h1>SVG Icons</h1>
 
     <div class="grid grid--fit">
       <div class="grid__cell">
         <div>
-          <a class="test" href="#">
-            {{ icon.source('twitter', 'huge', 'Twitter Icon', 'Twitter Icon um die Verbindung zu Twitter zu verdeutlichen', 'img') }}
+          {{ icon.loose('twitter') }}
+          Das Formular wurde erfolgreich abgeschickt
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          {{ icon.mean('twitter', '',  'Twitter Icon', 'Grafik des Icons der Firma Twitter') }}
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
+            {{ icon.linked('twitter') }}
           </a>
         </div>
       </div>
       <div class="grid__cell">
         <div>
-          <a class="test" href="#">
-            {{ icon.source('facebook', '', 'Facebook Icon', 'Beschreibung des Facebook Icons') }}
-          </a>
-        </div>
-      </div>
-      <div class="grid__cell">
-        <div>
-          <a class="test" href="#">
-            {{ icon.source('vimeo', 'large') }}
+          <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
+            {{ icon.linked('twitter') }}
+            Facebook
           </a>
         </div>
       </div>
