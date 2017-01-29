@@ -34,35 +34,6 @@
 
     <h1>Sean</h1>
 
-    <div class="grid grid--fit">
-      <div class="grid__cell">
-        <div>
-          {{ icon.loose('twitter') }}
-          Das Formular wurde erfolgreich abgeschickt
-        </div>
-      </div>
-      <div class="grid__cell">
-        <div>
-          {{ icon.mean('twitter', '',  'Twitter Icon', 'Grafik des Icons der Firma Twitter') }}
-        </div>
-      </div>
-      <div class="grid__cell">
-        <div>
-          <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
-            {{ icon.linked('twitter') }}
-          </a>
-        </div>
-      </div>
-      <div class="grid__cell">
-        <div>
-          <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
-            {{ icon.linked('twitter') }}
-            Facebook
-          </a>
-        </div>
-      </div>
-    </div>
-
   </main>
 
 

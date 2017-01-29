@@ -130,7 +130,7 @@
 
     <hr />
 
-    <h1>SVG Icons</h1>
+    <h1>Icons </h1>
 
     <div class="grid grid--fit">
       <div class="grid__cell">
@@ -157,6 +157,33 @@
             {{ icon.linked('twitter') }}
             Facebook
           </a>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h1>Grids</h1>
+
+    <div class="grid grid--fit">
+      <div class="grid__cell">
+        <div>
+          First Column
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          Second Column
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          Third Column
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          Fourth Column
         </div>
       </div>
     </div>
