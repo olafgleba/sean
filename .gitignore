@@ -1,7 +1,4 @@
 .sass-cache
 **/*.DS_Store
-*.sublime-project
-*.sublime-workspace
 node_modules
 bower_components
-app/
