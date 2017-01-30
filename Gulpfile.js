@@ -271,7 +271,6 @@ gulp.task('process:templates', function() {
 
 
 
-
 /**
  * Process images which are used within the SASS
  * source, e.g. background images, logos etc.
