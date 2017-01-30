@@ -486,13 +486,7 @@ gulp.task('watch', function() {
   ).on('change', bs.reload);
 
 
-  // gulp.watch(paths.src.tpls + '**/*.tpl',
-  //   [
-  //     'process:templates'
-  //   ]
-  // ).on('change', bs.reload);
-
-  gulp.watch(paths.src.tpls + '**/*.nunjucks',
+  gulp.watch(paths.src.tpls + '*.nunjucks',
     [
       'process:templates'
     ]
