@@ -230,13 +230,7 @@ gulp.task('compile:sass', function() {
  * @return {[type]}             [description]
  */
 var expandEnv = function(environment) {
-
-  //
   environment.addGlobal('randomHash', randomHash);
-
-  // environment.addFilter('functionName', function(str) {
-  //   return str + xxx;
-  // });
 }
 
 

@@ -135,27 +135,32 @@
     <div class="grid grid--fit">
       <div class="grid__cell">
         <div>
-          {{ icon.loose('twitter') }}
+          {{ icon.loose('twitter', 'true') }}
           Das Formular wurde erfolgreich abgeschickt
         </div>
       </div>
       <div class="grid__cell">
         <div>
-          {{ icon.mean('twitter', '',  'Twitter Icon', 'Grafik des Icons der Firma Twitter') }}
+          {{ icon.mean('twitter', 'Smartphone', 'Optimierte Darstellung für mobile Geräte','large') }}
+        </div>
+      </div>
+      <div class="grid__cell">
+        <div>
+          {{ icon.mean('facebook') }}
         </div>
       </div>
       <div class="grid__cell">
         <div>
           <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
-            {{ icon.linked('twitter') }}
+            {{ icon.loose('twitter') }}
           </a>
         </div>
       </div>
       <div class="grid__cell">
         <div>
           <a href="#0" title="Gehe zur Twitter Seite" aria-label="Gehe zur Twitter Seite">
-            {{ icon.linked('twitter') }}
-            Facebook
+            {{ icon.loose('twitter', '', 'huge') }}
+            Twitter
           </a>
         </div>
       </div>

@@ -1,4 +1,7 @@
-{% macro mean(file, size, title, desc, uid = randomHash()) -%}
+{#
+  Icon, das inhaltliche Bedeutung hat (nicht verlinkt)
+#}
+{% macro mean(file, title, desc, size, uid = randomHash()) -%}
 <svg class="icon {% if size %}icon--{{ size }} {% endif %}icon-{{ file }}" role="img" {% if title or desc %}aria-labelledby="{% if title %}title-{{ uid }}{% endif %}{% if desc %} desc-{{ uid }}{% endif %}" {% endif %}>
 {%- if title -%}
 <title id="title-{{ uid }}">{{ title }}</title>
@@ -10,11 +13,11 @@
 {%- endmacro %}
 
 
-{% macro loose(file, size) -%}
-<svg class="icon {% if size %}icon--{{ size }} {% endif %}icon-{{ file }}" role="img" aria-hidden="true"><use xlink:href="assets/img/icon-sprite.svg#icon-{{ file }}" /></svg>
-{%- endmacro %}
-
-
-{% macro linked(file, size) -%}
-<svg class="icon {% if size %}icon--{{ size }} {% endif %}icon-{{ file }}" role="img"><use xlink:href="assets/img/icon-sprite.svg#icon-{{ file }}" /></svg>
+{#
+  Icon, das dekorativer Natur ist + Text (nicht verlinkt)
+  Icon, das dekorativer Natur ist (verlinkt)
+  Icon, das dekorativer Natur ist + Text (verlinkt)
+#}
+{% macro loose(file, ariaHiddenStatus, size) -%}
+<svg class="icon {% if size %}icon--{{ size }} {% endif %}icon-{{ file }}" role="img"{% if ariaHiddenStatus %} aria-hidden="{{ ariaHiddenStatus }}"{% endif %}><use xlink:href="assets/img/icon-sprite.svg#icon-{{ file }}" /></svg>
 {%- endmacro %}

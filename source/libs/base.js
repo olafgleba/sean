@@ -11,7 +11,6 @@
 
 /*eslint-disable no-undef */
 
-
 var App = (function() {
 
   'use strict';
@@ -54,8 +53,6 @@ var App = (function() {
   };
 
 })();
-
-
 
 
 /**
