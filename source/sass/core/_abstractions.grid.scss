@@ -45,13 +45,13 @@ $grid-gutter-size--huge:  quadruple($grid-gutter-size) !default;
  *
  */
 
- /**
-  * Modifier: Center horizontal align grid cells
-  */
+/**
+ * Modifier: Center horizontal align grid cells
+ */
 
- .grid--center {
-   justify-content: center;
- }
+.grid--center {
+  justify-content: center;
+}
 
 /**
  * Modifier: Right horizontal align grid cells
@@ -61,7 +61,7 @@ $grid-gutter-size--huge:  quadruple($grid-gutter-size) !default;
   justify-content: flex-end;
 }
 
- /**
+/**
  * Modifier: Bottom align grid cells
  */
 
@@ -166,12 +166,12 @@ $grid-gutter-size--huge:  quadruple($grid-gutter-size) !default;
  * s. http://git.io/vllWx
  */
 
- /**
-  * Grid cell modifier: Distribute cells to available space by default
-  *
-  * 1. Use `0%` to avoid bug in IE10/11 with unitless flex basis
-  * s. http://git.io/vllWx
-  */
+/**
+ * Grid cell modifier: Distribute cells to available space by default
+ *
+ * 1. Use `0%` to avoid bug in IE10/11 with unitless flex basis
+ * s. http://git.io/vllWx
+ */
 
 .grid--fit > .grid__cell {
   flex: 1 1 0%; /* 1 */
