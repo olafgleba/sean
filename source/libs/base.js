@@ -84,30 +84,4 @@ $(function() {
   });
 
 
-  // Init carousel demo
-  $('.owl-carousel').owlCarousel({
-    itemsCustom: [
-      [0, 2],
-      [450, 4],
-      [600, 7],
-      [700, 9],
-      [1000, 10],
-      [1200, 12],
-      [1400, 13],
-      [1600, 15]
-    ],
-    navigation: true
-  });
-
-
-  // Init carousel demo 2
-  $('.owl-carousel-single').owlCarousel({
-    navigation: true, // Show next and prev buttons
-    slideSpeed: 300,
-    paginationSpeed: 400,
-    singleItem: true,
-    autoHeight: true
-  });
-
-
 });

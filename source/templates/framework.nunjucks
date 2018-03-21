@@ -508,36 +508,6 @@
       </div>
     </div>
 
-    <h1>Owl Carousel</h1>
-    <div class="owl-carousel">
-      <div class="item"><h1>1</h1></div>
-      <div class="item"><h1>2</h1></div>
-      <div class="item"><h1>3</h1></div>
-      <div class="item"><h1>4</h1></div>
-      <div class="item"><h1>5</h1></div>
-      <div class="item"><h1>6</h1></div>
-      <div class="item"><h1>7</h1></div>
-      <div class="item"><h1>8</h1></div>
-      <div class="item"><h1>9</h1></div>
-      <div class="item"><h1>10</h1></div>
-      <div class="item"><h1>11</h1></div>
-      <div class="item"><h1>12</h1></div>
-      <div class="item"><h1>13</h1></div>
-      <div class="item"><h1>14</h1></div>
-      <div class="item"><h1>15</h1></div>
-      <div class="item"><h1>16</h1></div>
-      <div class="item"><h1>17</h1></div>
-      <div class="item"><h1>18</h1></div>
-      <div class="item"><h1>19</h1></div>
-      <div class="item"><h1>20</h1></div>
-    </div>
-
-    <div class="owl-carousel-single">
-      <div class="item"><img class="lazyload" data-src="http://placehold.it/480x320" src="http://placehold.it/100x100" alt="The Last of us"></div>
-      <div class="item"><img class="lazyload" src="http://placehold.it/100x100" data-src="http://placehold.it/240x160" alt="GTA V"></div>
-      <div class="item"><img class="lazyload" src="http://placehold.it/100x100" data-src="http://placehold.it/640x480" alt="Mirror Edge"></div>
-    </div>
-
     <h1>Fluidbox</h1>
     <p><a href="http://placehold.it/768x1024/" rel="fluidbox"><img src="http://placehold.it/320x180/" alt=""></a></p>
 
