@@ -1,5 +1,7 @@
 .sass-cache
 **/*.DS_Store
 .vscode
+package-lock.json
 node_modules
 bower_components
+app/**/*
